@@ -1,0 +1,1 @@
+create table menu_product (uuid varchar(255) not null, barcode integer, combo_description varchar(255), cost integer not null, description varchar(255), discount_cost integer, name varchar(255), photo_link varchar(255), product_code varchar(255), visible boolean not null, weight integer, primary key (uuid))
