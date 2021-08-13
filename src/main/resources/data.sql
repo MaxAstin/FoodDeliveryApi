@@ -1,13 +1,12 @@
-
-INSERT INTO menu_product (menu_product_uuid,
+INSERT INTO menu_product (uuid,
                           name,
                           cost,
-                          discountCost,
+                          discount_cost,
                           weight,
                           description,
-                          comboDescription,
-                          photoLink,
-                          productCode,
+                          combo_description,
+                          photo_link,
+                          product_code,
                           barcode,
                           visible)
 VALUES ('1',

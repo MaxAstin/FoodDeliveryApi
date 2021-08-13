@@ -10,14 +10,16 @@ import org.springframework.stereotype.Service
 class CafeService {
 
     fun getCafes(): List<Cafe> = listOf(
-            Cafe(
-                    uuid = "uuid1",
-                    fromTime = "10:00",
-                    toTime = "22:00",
-                    phone = "+7 (900) 111-14-21",
-                    latitude = 50.0,
-                    longitude = 39.0,
-                    visible = true,
-            )
+        Cafe(
+            uuid = "uuid1",
+            fromTime = "10:00",
+            toTime = "22:00",
+            phone = "+7 (900) 111-14-21",
+            latitude = 50.0,
+            longitude = 39.0,
+            visible = true,
+            emptyList(),
+            "address"
+        )
     )
 }

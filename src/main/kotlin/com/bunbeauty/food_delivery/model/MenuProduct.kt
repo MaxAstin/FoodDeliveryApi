@@ -6,16 +6,16 @@ import javax.persistence.Table
 
 @Entity
 data class MenuProduct(
-        @Id
-        val uuid: String,
-        val name: String,
-        val cost: Int,
-        val discountCost: Int?,
-        val weight: Int?,
-        val description: String,
-        val comboDescription: String?,
-        val photoLink: String,
-        val productCode: String,
-        val barcode: Int?,
-        val visible: Boolean
+    @Id
+    val uuid: String,
+    val name: String,
+    val cost: Int,
+    val discountCost: Int?,
+    val weight: Int?,
+    val description: String,
+    val comboDescription: String?,
+    val photoLink: String,
+    val productCode: String,
+    val barcode: Int?,
+    val visible: Boolean
 )

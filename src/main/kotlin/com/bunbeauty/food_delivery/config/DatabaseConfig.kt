@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import javax.sql.DataSource
 
+/*
 @Configuration
 class DatabaseConfig {
 
-    @Value("\${spring.datasource.url}")
+@Value("\${spring.datasource.url}")
     private lateinit var datasourceUrl: String
 
     @Value("\${spring.datasource.driver-class-name}")
@@ -29,4 +30,6 @@ class DatabaseConfig {
                 username = dbUsername
                 password = dbPassword
             }
+
 }
+*/

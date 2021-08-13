@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MenuProductRepository: CrudRepository<MenuProduct, String> {
-    //fun getAll(): List<MenuProduct>
+    fun getAllBy(): List<MenuProduct>
 }

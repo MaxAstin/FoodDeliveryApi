@@ -19,7 +19,7 @@ class MenuProductController {
         return try {
             ResponseEntity.ok(menuProductService.getMenuProducts())
         } catch (ex: Exception) {
-            ResponseEntity.badRequest().body("Error")
+            ResponseEntity.badRequest().body(ex.message)
         }
     }
 }
