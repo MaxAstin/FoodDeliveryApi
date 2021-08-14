@@ -1,13 +1,26 @@
 package com.bunbeauty.food_delivery.controller
 
 import com.bunbeauty.food_delivery.service.MenuProductService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class MenuProductController(val menuProductService: MenuProductService) {
+@RequestMapping("/menuProduct")
+class MenuProductController {
 
-    @GetMapping
-    fun getMenuProduct() = menuProductService.getMenuProducts()
+    @Autowired
+    lateinit var menuProductService: MenuProductService
+
+    @GetMapping("/all")
+    fun getMenuProducts(): ResponseEntity<String> {
+        return try {
+            ResponseEntity.ok(menuProductService.getMenuProducts().first().name)
+        } catch (ex: Exception) {
+            ResponseEntity.badRequest().body("Error")
+        }
+    }
 
 }
