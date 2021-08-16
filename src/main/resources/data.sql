@@ -9,7 +9,7 @@ INSERT INTO menu_product (uuid,
                           product_code,
                           barcode,
                           visible)
-VALUES ('1',
+VALUES ('2',
         'Бургер MINI с курицей',
         99,
         0,
