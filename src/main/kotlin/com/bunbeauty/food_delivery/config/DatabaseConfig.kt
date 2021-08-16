@@ -28,7 +28,6 @@ class DatabaseConfig {
                 url = datasourceUrl
                 username = dbUsername
                 password = dbPassword
-                dbDriverClassName = "org.postgresql.Driver"
             }
 
 }
