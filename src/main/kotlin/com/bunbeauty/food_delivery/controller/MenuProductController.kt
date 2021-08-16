@@ -15,12 +15,11 @@ class MenuProductController {
     lateinit var menuProductService: MenuProductService
 
     @GetMapping("/all")
-    fun getMenuProducts(): ResponseEntity<String> {
+    fun getMenuProducts(): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(menuProductService.getMenuProducts().first().name)
+            ResponseEntity.ok(menuProductService.getMenuProducts())
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("Error")
         }
     }
-
 }

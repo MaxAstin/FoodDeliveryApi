@@ -1,0 +1,23 @@
+
+INSERT INTO menu_product (menu_product_uuid,
+                          name,
+                          cost,
+                          discountCost,
+                          weight,
+                          description,
+                          comboDescription,
+                          photoLink,
+                          productCode,
+                          barcode,
+                          visible)
+VALUES ('1',
+        'Бургер MINI с курицей',
+        99,
+        0,
+        200,
+        'Сочная куриная котлета, сыр Чедр, маринованный огурчик, помидор, красный лук, салат, фирменный соус, булочка с кунжутом',
+        '',
+        'https://firebasestorage.googleapis.com/v0/b/fooddelivery-ce2ef.appspot.com/o/222.jpg?alt=media&token=fcd575b3-874e-4e23-a8c5-4a15b29b1ce6',
+        'BURGER',
+        222,
+        true);
