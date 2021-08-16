@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.5.21"
     kotlin("plugin.spring") version "1.5.21"
     kotlin("plugin.jpa") version "1.3.72"
+    id ("com.moowork.node") version "1.3.1"
 }
 
 group = "com.example"
@@ -34,6 +35,10 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "11"
     }
+}
+
+node {
+    download = true
 }
 
 tasks.withType<Test> {
