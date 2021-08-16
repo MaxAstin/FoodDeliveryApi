@@ -29,6 +29,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.postgresql:postgresql:9.4.1212")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 }
 
 tasks.withType<KotlinCompile> {
