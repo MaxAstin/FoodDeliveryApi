@@ -1,22 +1,25 @@
-INSERT INTO menu_product (uuid,
-                          name,
-                          cost,
-                          discount_cost,
-                          weight,
-                          description,
-                          combo_description,
-                          photo_link,
-                          product_code,
-                          barcode,
-                          visible)
-VALUES ('2',
-        'Бургер MINI с курицей',
-        99,
-        0,
-        200,
-        'Сочная куриная котлета, сыр Чедр, маринованный огурчик, помидор, красный лук, салат, фирменный соус, булочка с кунжутом',
-        '',
-        'https://firebasestorage.googleapis.com/v0/b/fooddelivery-ce2ef.appspot.com/o/222.jpg?alt=media&token=fcd575b3-874e-4e23-a8c5-4a15b29b1ce6',
-        'BURGER',
-        222,
-        true);
+INSERT INTO cafe (uuid,
+                  fromTime,
+                  toTime,
+                  phone,
+                  latitude,
+                  longitude,
+                  visible,
+                  address)
+VALUES ('cafe_uuid',
+        '10:00',
+        '22:00',
+        '89999999999',
+        56.0,
+        56.0,
+        true,
+        'kimry');
+
+
+INSERT INTO disctrict (uuid,
+                  name,
+                  cafe_uuid)
+VALUES ('district_uuid',
+        'cvetochniy',
+        'cafe_uuid'
+);

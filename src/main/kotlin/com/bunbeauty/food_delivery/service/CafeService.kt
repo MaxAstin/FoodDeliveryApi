@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class CafeService {
-
     fun getCafes(): List<Cafe> = listOf(
         Cafe(
             uuid = "uuid1",

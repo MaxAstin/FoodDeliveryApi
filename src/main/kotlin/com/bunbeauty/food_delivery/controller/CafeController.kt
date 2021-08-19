@@ -1,7 +1,6 @@
 package com.bunbeauty.food_delivery.controller
 
 import com.bunbeauty.food_delivery.service.CafeService
-import com.bunbeauty.food_delivery.service.MenuProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
