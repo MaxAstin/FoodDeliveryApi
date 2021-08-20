@@ -1,18 +1,18 @@
 package com.bunbeauty.food_delivery.model
 
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
 data class Street(
     @Id
-    var uuid: String,
+    val uuid: String,
 
-    var name: String,
+    val name: String,
 
     @ManyToOne
     @JoinColumn(name="district_uuid")
-    var district: District?
+    val district: District?,
+
+    @OneToMany(mappedBy = "street")
+    val address: List<Address>
 )
