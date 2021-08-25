@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service
 @Service
 class OrderService {
 
-    fun save(order: Order){
+    fun insert(order: Order){
 
     }
-    //fun insert
 }

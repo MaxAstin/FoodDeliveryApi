@@ -1,10 +1,16 @@
 package com.bunbeauty.food_delivery.model
 
 import com.bunbeauty.food_delivery.enums.OrderStatus
+import javax.persistence.Embedded
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.OneToMany
 
+@Entity
 data class Order(
+    @Id
     val uuid: String,
-
+    @Embedded
     val address: Address,
     val comment: String,
     val phone: String,
@@ -15,7 +21,10 @@ data class Order(
     val email: String,
     val deferredTime: String,
     val bonus: Int,
+    //relation
     val userId: String,
     val cafeId: String,
-    //var cartProducts: List<CartProduct>,
+
+    @OneToMany(mappedBy = "order")
+    var cartProducts: List<CartProduct>,
 )

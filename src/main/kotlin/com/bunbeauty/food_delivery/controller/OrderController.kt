@@ -17,9 +17,8 @@ class OrderController {
 
     @PostMapping("/{name}")
     fun postOrder(@ModelAttribute order: Order): String {
-        orderService.save(order)
+        orderService.insert(order)
         return "Success"
     }
-
 
 }

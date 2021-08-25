@@ -39,5 +39,5 @@ class MenuProductService {
         barcode = 1,
         visible = true,
         )*/
-//
+
 }

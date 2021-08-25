@@ -1,12 +1,9 @@
 package com.bunbeauty.food_delivery.model
 
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
-//user address
 @Entity
+@Embeddable
 data class Address(
     @Id
     val uuid: String,

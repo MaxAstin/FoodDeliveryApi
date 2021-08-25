@@ -1,10 +1,12 @@
 package com.bunbeauty.food_delivery.model
 
+import javax.persistence.Embeddable
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
+@Embeddable
 data class MenuProduct(
     @Id
     val uuid: String,
