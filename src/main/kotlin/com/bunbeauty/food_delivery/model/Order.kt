@@ -6,12 +6,13 @@ import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.OneToMany
 
-@Entity
+//@Entity
 data class Order(
-    @Id
+    //@Id
     val uuid: String,
-    @Embedded
+    //@Embedded
     val address: Address,
+
     val comment: String,
     val phone: String,
     val time: Long,
@@ -25,6 +26,8 @@ data class Order(
     val userId: String,
     val cafeId: String,
 
-    @OneToMany(mappedBy = "order")
+
+ //@OneToMany(mappedBy = "order")
     var cartProducts: List<CartProduct>,
+
 )

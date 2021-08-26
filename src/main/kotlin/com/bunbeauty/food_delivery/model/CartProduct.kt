@@ -13,7 +13,7 @@ data class CartProduct(
 
     var count: Int,
 
-    @ManyToOne
+/*    @ManyToOne
     @JoinColumn(name = "order_uuid")
-    var order: Order? =  null
+    var order: Order?*/
 )

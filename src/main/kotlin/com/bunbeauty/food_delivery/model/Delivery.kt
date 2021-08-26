@@ -1,6 +1,12 @@
 package com.bunbeauty.food_delivery.model
 
+import javax.persistence.Entity
+import javax.persistence.Id
+
+@Entity
 data class Delivery(
-    val cost: Int = 0,
-    val forFree: Int = 0
+    @Id
+    val uuid: String,
+    val cost: Int,
+    val forFree: Int
 )

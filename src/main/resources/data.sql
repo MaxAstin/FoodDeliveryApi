@@ -1,3 +1,5 @@
+
+/*
 INSERT INTO cafe (uuid,
                   fromTime,
                   toTime,
@@ -22,4 +24,4 @@ INSERT INTO disctrict (uuid,
 VALUES ('district_uuid',
         'cvetochniy',
         'cafe_uuid'
-);
+);*/
