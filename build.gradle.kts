@@ -47,13 +47,13 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-/*tasks.withType<Jar> {
+tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
     }
-    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
-}*/
+}
 
+/*
 val fatJar = task("fatJar", type = Jar::class) {
     baseName = "${project.name}-fat"
     manifest {
@@ -68,4 +68,4 @@ tasks {
     "build" {
         dependsOn(fatJar)
     }
-}
+}*/
