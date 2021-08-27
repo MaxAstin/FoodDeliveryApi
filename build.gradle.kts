@@ -46,3 +46,9 @@ node {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "com.bunbeauty.food_delivery"
+    }
+}
