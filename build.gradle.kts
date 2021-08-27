@@ -49,6 +49,6 @@ tasks.withType<Test> {
 
 tasks.withType<Jar> {
     manifest {
-        attributes["Main-Class"] = "com.bunbeauty.food_delivery"
+        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplication"
     }
 }
