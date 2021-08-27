@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm") version "1.5.21"
     kotlin("plugin.spring") version "1.5.21"
     kotlin("plugin.jpa") version "1.3.72"
-    id ("com.moowork.node") version "1.3.1"
+    id("com.moowork.node") version "1.3.1"
 }
 
 group = "com.example"
@@ -29,7 +29,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
 
-    runtimeOnly ("org.postgresql:postgresql")
+    runtimeOnly("org.postgresql:postgresql")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 }
 
@@ -52,4 +52,5 @@ tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
     }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 }

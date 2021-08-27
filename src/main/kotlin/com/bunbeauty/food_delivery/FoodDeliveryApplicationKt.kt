@@ -12,8 +12,3 @@ class FoodDeliveryApplicationKt {
         }
     }
 }
-
-/*
-fun main(args: Array<String>) {
-    runApplication<FoodDeliveryApplication>(*args)
-}*/
