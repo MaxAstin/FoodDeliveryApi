@@ -1,5 +1,6 @@
 package com.bunbeauty.food_delivery.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
@@ -11,8 +12,9 @@ data class Street(
 
     @ManyToOne
     @JoinColumn(name="district_uuid")
+    @JsonIgnore
     val district: District?,
 
     @OneToMany(mappedBy = "street")
-    val address: List<Address>
+    val addressList: List<Address>
 )

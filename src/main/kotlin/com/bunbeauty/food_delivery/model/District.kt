@@ -1,5 +1,6 @@
 package com.bunbeauty.food_delivery.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
@@ -14,5 +15,6 @@ data class District(
 
     @ManyToOne
     @JoinColumn(name = "cafe_uuid")
-    var cafe: Cafe? = null
+    @JsonIgnore
+    var cafe: Cafe
 )

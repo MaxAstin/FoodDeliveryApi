@@ -16,7 +16,8 @@ class CafeController {
 
     @GetMapping("/all")
     fun getCafe(): ResponseEntity<Any> {
-        return try { ResponseEntity.ok(cafeService.getCafes())
+        return try {
+            ResponseEntity.ok(cafeService.getCafes())
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("Error")
         }

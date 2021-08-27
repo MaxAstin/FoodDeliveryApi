@@ -1,5 +1,7 @@
 package com.bunbeauty.food_delivery.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.OneToMany
@@ -25,7 +27,12 @@ data class Cafe(
 
     val visible: Boolean,
 
-    @OneToMany(mappedBy = "cafe")
+    /**
+     * don't give to client
+     * resole on backend
+     */
+    @OneToMany(mappedBy = "cafe", cascade = [CascadeType.ALL])
+    @JsonIgnore
     val districts: List<District>,
 
     val address: String,
