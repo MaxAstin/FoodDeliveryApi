@@ -47,9 +47,15 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+//tasks.withType<Jar> {
+//    manifest {
+//        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
+//    }
+//}
+
 tasks.withType<Jar> {
-    manifest {
-        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
     }
 }
 
