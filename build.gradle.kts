@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     //id("application")
@@ -60,6 +61,18 @@ tasks.withType<KotlinCompile> {
 //    destinationDirectory.set(File(buildDir.path + "/libs"))
 //}
 
+//tasks.withType<Jar> {
+//    manifest {
+//        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
+//    }
+//}
+//
+//tasks.withType<ShadowJar> {
+//    manifest {
+//        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
+//    }
+//}
+
 tasks {
     shadowJar {
         manifest {
@@ -67,31 +80,9 @@ tasks {
         }
         //destinationDirectory.set(File(buildDir.path + "/libs"))
     }
+    jar {
+        manifest {
+            attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
+        }
+    }
 }
-
-
-//
-//node {
-//    download = true
-//}
-//
-//tasks.withType<Test> {
-//    useJUnitPlatform()
-//}
-//
-//tasks.withType<Jar> {
-//    manifest {
-//        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
-//    }
-//}
-//
-//jar.manifest { attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt" }
-//
-//task("stage") {
-////    doFirst {
-////        val command = file("${installDist.destinationDir}/bin/${project.name}").relativeTo(rootDir)
-////
-////        file("$rootDir/Procfile").writeText("web: RESTEASY_PORT=\$PORT $command")
-////    }
-//    dependsOn(installDist)
-//}
