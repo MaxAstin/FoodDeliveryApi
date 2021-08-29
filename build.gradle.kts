@@ -50,7 +50,7 @@ tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
     }
-    destinationDirectory.set(buildDir)
+    destinationDirectory.set(File(buildDir.path + "/libs"))
 }
 
 
