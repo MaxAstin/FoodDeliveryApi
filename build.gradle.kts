@@ -1,25 +1,23 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    application
-    id("org.springframework.boot") version "2.5.3"
+    kotlin("plugin.jpa") version "1.5.30"
+    id("org.springframework.boot") version "2.5.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.5.21"
-    kotlin("plugin.spring") version "1.5.21"
-    kotlin("plugin.jpa") version "1.3.72"
-    id("com.moowork.node") version "1.3.1"
+    kotlin("jvm") version "1.4.32"
+    kotlin("plugin.spring") version "1.4.32"
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+//group = "com.example"
+//version = "0.0.1-SNAPSHOT"
+//java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
 }
 
-val jar: Jar by tasks
-val installDist: Sync by tasks
+//val jar: Jar by tasks
+//val installDist: Sync by tasks
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
@@ -42,28 +40,28 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
-
-node {
-    download = true
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
-
-tasks.withType<Jar> {
-    manifest {
-        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
-    }
-}
-
-jar.manifest { attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt" }
-
-task("stage") {
-//    doFirst {
-//        val command = file("${installDist.destinationDir}/bin/${project.name}").relativeTo(rootDir)
 //
-//        file("$rootDir/Procfile").writeText("web: RESTEASY_PORT=\$PORT $command")
+//node {
+//    download = true
+//}
+//
+//tasks.withType<Test> {
+//    useJUnitPlatform()
+//}
+//
+//tasks.withType<Jar> {
+//    manifest {
+//        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
 //    }
-    dependsOn(installDist)
-}
+//}
+//
+//jar.manifest { attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt" }
+//
+//task("stage") {
+////    doFirst {
+////        val command = file("${installDist.destinationDir}/bin/${project.name}").relativeTo(rootDir)
+////
+////        file("$rootDir/Procfile").writeText("web: RESTEASY_PORT=\$PORT $command")
+////    }
+//    dependsOn(installDist)
+//}
