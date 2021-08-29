@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     application
@@ -43,9 +44,15 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-tasks.withType<Jar>() {
-    manifest {
-        attributes["Main-Class"] = application.mainClass
+//tasks.withType<BootJar> {
+//    manifest {
+//        attributes["Main-Class"] = application.mainClass
+//    }
+//}
+
+tasks {
+    jar {
+        enabled = true
     }
 }
 
