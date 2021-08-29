@@ -1,14 +1,17 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    //id("application")
+    application
     id("com.github.johnrengelman.shadow") version "7.0.0"
     kotlin("plugin.jpa") version "1.5.30"
     id("org.springframework.boot") version "2.5.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.spring") version "1.4.32"
+}
+
+application {
+    mainClass.set("com.bunbeauty.food_delivery.FoodDeliveryApplicationKt")
 }
 
 //val mainClassName = "FoodDeliveryApplicationKt"
@@ -76,13 +79,15 @@ tasks.withType<KotlinCompile> {
 tasks {
     shadowJar {
         manifest {
-            attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
+            attributes["Main-Class"] = application.mainClass
+        //"com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
         }
         //destinationDirectory.set(File(buildDir.path + "/libs"))
     }
-    jar {
-        manifest {
-            attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
-        }
-    }
+//    jar {
+//        manifest {
+//            attributes["Main-Class"] = application.mainClass
+//                //"com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
+//        }
+//    }
 }
