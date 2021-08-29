@@ -1,12 +1,9 @@
 package com.bunbeauty.food_delivery.config
 
-import org.hibernate.annotations.common.util.impl.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.jdbc.datasource.DriverManagerDataSource
-import java.util.logging.Logger
-import java.util.logging.Logger.getLogger
 import javax.sql.DataSource
 
 @Configuration
@@ -32,7 +29,7 @@ class DatabaseConfig {
                     "dbDriverClassName $dbDriverClassName\n" +
                     "dbUsername $dbUsername\n" +
                     "dbPassword $dbPassword"
-        );
+        )
 
         return DriverManagerDataSource().apply {
             setDriverClassName(dbDriverClassName)

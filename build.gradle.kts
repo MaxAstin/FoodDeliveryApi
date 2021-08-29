@@ -40,6 +40,15 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
+        //attributes['Class-Path'] = configurations.compile.cl .collect { it.getName() }.join(' ')
+    }
+}
+
+
 //
 //node {
 //    download = true
