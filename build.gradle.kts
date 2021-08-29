@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     application
-    //id("com.github.johnrengelman.shadow") version "7.0.0"
     id("org.springframework.boot") version "2.5.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("plugin.jpa") version "1.5.30"
@@ -29,11 +28,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin:kotlin-noarg")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    implementation("javax.xml.bind:jaxb-api")
 
-    runtimeOnly("org.postgresql:postgresql")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    runtimeOnly("org.postgresql:postgresql")
 }
 
 tasks.withType<KotlinCompile> {
@@ -43,22 +43,6 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-//tasks.withType<BootJar> {
-//    manifest {
-//        attributes["Main-Class"] = application.mainClass
-//    }
-//}
-
-tasks {
-    jar {
-        enabled = false
-    }
+tasks.jar {
+    enabled = false
 }
-
-//tasks {
-//    shadowJar {
-//        manifest {
-//            attributes["Main-Class"] = application.mainClass
-//        }
-//    }
-//}
