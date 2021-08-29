@@ -1,12 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    //id("application")
     kotlin("plugin.jpa") version "1.5.30"
     id("org.springframework.boot") version "2.5.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.spring") version "1.4.32"
 }
+
+//val mainClassName = "FoodDeliveryApplicationKt"
 
 //group = "com.example"
 //version = "0.0.1-SNAPSHOT"
@@ -42,10 +45,12 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.withType<Jar> {
+    from(sourceSets.main.get().output)
+    dependsOn(configurations.runtimeClasspath)
     manifest {
         attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
-        //attributes['Class-Path'] = configurations.compile.cl .collect { it.getName() }.join(' ')
     }
+    destinationDirectory.set(buildDir)
 }
 
 
