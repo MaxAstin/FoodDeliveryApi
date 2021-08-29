@@ -47,17 +47,17 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-//tasks.withType<Jar> {
-//    manifest {
-//        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
-//    }
-//}
-
 tasks.withType<Jar> {
-    configurations["compileClasspath"].forEach { file: File ->
-        from(zipTree(file.absoluteFile))
+    manifest {
+        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
     }
 }
+
+//tasks.withType<Jar> {
+//    configurations["compileClasspath"].forEach { file: File ->
+//        from(zipTree(file.absoluteFile))
+//    }
+//}
 
 /*
 val fatJar = task("fatJar", type = Jar::class) {
