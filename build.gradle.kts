@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    application
     id("org.springframework.boot") version "2.5.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.5.21"
@@ -16,6 +17,9 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 repositories {
     mavenCentral()
 }
+
+val jar: Jar by tasks
+val installDist: Sync by tasks
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
@@ -53,25 +57,13 @@ tasks.withType<Jar> {
     }
 }
 
-//tasks.withType<Jar> {
-//    configurations["compileClasspath"].forEach { file: File ->
-//        from(zipTree(file.absoluteFile))
-//    }
-//}
+jar.manifest { attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt" }
 
-/*
-val fatJar = task("fatJar", type = Jar::class) {
-    baseName = "${project.name}-fat"
-    manifest {
-        attributes["Implementation-Title"] = "Gradle Jar File Example"
-        attributes["Implementation-Version"] = version
-        attributes["Main-Class"] = "com.bunbeauty.food_delivery.FoodDeliveryApplicationKt"
-    }
-    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
-    with(tasks.jar.get() as CopySpec)
+task("stage") {
+//    doFirst {
+//        val command = file("${installDist.destinationDir}/bin/${project.name}").relativeTo(rootDir)
+//
+//        file("$rootDir/Procfile").writeText("web: RESTEASY_PORT=\$PORT $command")
+//    }
+    dependsOn(installDist)
 }
-tasks {
-    "build" {
-        dependsOn(fatJar)
-    }
-}*/
