@@ -21,7 +21,7 @@ class CafeController {
         }
     }
 
-    @GetMapping("{city}")
+    @GetMapping()
     fun getCafeByCity(@RequestParam city: String): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(cafeService.getCafeByCity(city))
