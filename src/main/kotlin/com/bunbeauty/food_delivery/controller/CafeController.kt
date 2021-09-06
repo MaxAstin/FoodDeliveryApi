@@ -3,10 +3,7 @@ package com.bunbeauty.food_delivery.controller
 import com.bunbeauty.food_delivery.service.CafeService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/cafe")
@@ -24,9 +21,8 @@ class CafeController {
         }
     }
 
-
-    @GetMapping("/{city}")
-    fun getCafeByCity(@PathVariable city: String): ResponseEntity<Any> {
+    @GetMapping("{city}")
+    fun getCafeByCity(@RequestParam city: String): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(cafeService.getCafeByCity(city))
         } catch (ex: Exception) {

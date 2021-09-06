@@ -37,7 +37,5 @@ class DatabaseConfig {
             username = dbUsername
             password = dbPassword
         }
-
     }
-
 }
