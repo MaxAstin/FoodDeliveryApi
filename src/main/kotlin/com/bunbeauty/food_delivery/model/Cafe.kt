@@ -27,6 +27,10 @@ data class Cafe(
 
     val visible: Boolean,
 
+    val city: String,
+
+    //add city field
+
     /**
      * don't give to client
      * resole on backend

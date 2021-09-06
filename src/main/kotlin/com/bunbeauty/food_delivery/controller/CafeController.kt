@@ -4,6 +4,7 @@ import com.bunbeauty.food_delivery.service.CafeService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -18,6 +19,16 @@ class CafeController {
     fun getCafe(): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(cafeService.getCafes())
+        } catch (ex: Exception) {
+            ResponseEntity.badRequest().body("Error")
+        }
+    }
+
+
+    @GetMapping("/{city}")
+    fun getCafeByCity(@PathVariable city: String): ResponseEntity<Any> {
+        return try {
+            ResponseEntity.ok(cafeService.getCafeByCity(city))
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("Error")
         }

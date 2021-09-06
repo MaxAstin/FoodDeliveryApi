@@ -12,4 +12,6 @@ class CafeService {
     lateinit var cafeRepository: CafeRepository
 
     fun getCafes(): List<Cafe> = cafeRepository.getAllBy()
+
+    fun getCafeByCity(city: String): List<Cafe> = cafeRepository.getAllByCity(city)
 }
