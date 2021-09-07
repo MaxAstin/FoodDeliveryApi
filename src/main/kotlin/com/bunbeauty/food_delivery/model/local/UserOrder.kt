@@ -17,7 +17,7 @@ data class UserOrder(
     val address: String,
 
     val comment: String?,
-    val deferredTime: String?,
+    val deferredTime: Long?,
     val bonus: Int?,
 
     @ManyToOne

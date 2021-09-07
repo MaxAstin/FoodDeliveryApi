@@ -17,7 +17,7 @@ data class UserOrderClient(
     val isDelivery: Boolean,
     val code: String,
     val comment: String?,
-    val deferredTime: String?,
+    val deferredTime: Long?,
     val bonus: Int?,
 
     var address: String,
