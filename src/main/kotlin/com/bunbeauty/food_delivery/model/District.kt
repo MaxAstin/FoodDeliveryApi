@@ -11,7 +11,7 @@ data class District(
     var name: String,
 
     @OneToMany(mappedBy = "district")
-    val streets: List<Street> = emptyList(),
+    val streets: List<Street>,
 
     @ManyToOne
     @JoinColumn(name = "cafe_uuid")

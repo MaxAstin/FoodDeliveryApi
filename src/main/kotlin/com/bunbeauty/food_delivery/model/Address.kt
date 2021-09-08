@@ -1,23 +1,35 @@
 package com.bunbeauty.food_delivery.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
+import kotlin.jvm.Transient
 
 @Entity
-@Embeddable
 data class Address(
     @Id
-    val uuid: String,
+    var uuid: String,
 
     @ManyToOne
     @JoinColumn(name = "street_uuid")
-    val street: Street?,
+    @JsonIgnore
+    var street: Street?,
+    @Transient
+    val streetUuid: String,
 
     val house: String,
-    val flat: String,
-    val entrance: String,
-    val comment: String,
-    val floor: String,
-    //relation
-    val userUuid: String?,
-    val orderUuid: String?
+    val flat: String?,
+    val entrance: String?,
+    val comment: String?,
+    val floor: String?,
+
+    @ManyToOne
+    @JoinColumn(name = "profile_uuid")
+    @JsonIgnore
+    var profile: Profile?,
+    @Transient
+    val profileUuid: String,
+
+    /* @OneToMany(mappedBy = "address")
+     @JsonIgnore
+     val orders: List<Order>*/
 )

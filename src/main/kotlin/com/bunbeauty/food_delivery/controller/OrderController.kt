@@ -1,6 +1,5 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.Order
 import com.bunbeauty.food_delivery.service.OrderService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.ModelAttribute
@@ -15,10 +14,10 @@ class OrderController {
     @Autowired
     lateinit var orderService: OrderService
 
-    @PostMapping("/{name}")
+  /*  @PostMapping("/{name}")
     fun postOrder(@ModelAttribute order: Order): String {
         orderService.insert(order)
         return "Success"
-    }
+    }*/
 
 }
