@@ -19,7 +19,7 @@ class ProfileService {
         return profile
     }
 
-    fun getProfileByUuid(uuid: String): Profile? {
-        return profileRepository.getByUuid(uuid)
+    fun getProfileByUuid(uuid: String): Profile {
+        return profileRepository.getByUuid(uuid) ?: throw Exception("No profile with this uuid")
     }
 }
