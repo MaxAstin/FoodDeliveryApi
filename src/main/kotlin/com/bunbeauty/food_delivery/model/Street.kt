@@ -11,10 +11,10 @@ data class Street(
     val name: String,
 
     @ManyToOne
-    @JoinColumn(name="district_uuid")
+    @JoinColumn(name="cafe_uuid")
     @JsonIgnore
-    val district: District?,
+    val cafe: Cafe?,
 
-    @OneToMany(mappedBy = "street")
+    @OneToMany(mappedBy = "street", cascade = [CascadeType.ALL])
     val addressList: List<Address>
 )

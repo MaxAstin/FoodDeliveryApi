@@ -8,6 +8,9 @@ data class Profile(
     var uuid: String,
     val phone: String,
     val email: String,
-    @OneToMany(mappedBy = "profile")
-    val addressList: List<Address>?
+    @OneToMany(mappedBy = "profile", cascade = [CascadeType.ALL])
+    val addressList: List<Address>?,
+
+    @OneToMany(mappedBy = "profile", cascade = [CascadeType.ALL])
+    val userOrderList: List<UserOrder>?
 )

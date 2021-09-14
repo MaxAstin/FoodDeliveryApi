@@ -28,8 +28,4 @@ data class Address(
     var profile: Profile?,
     @Transient
     val profileUuid: String,
-
-    /* @OneToMany(mappedBy = "address")
-     @JsonIgnore
-     val orders: List<Order>*/
 )

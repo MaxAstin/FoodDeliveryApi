@@ -29,15 +29,17 @@ data class Cafe(
 
     val city: String,
 
-    //add city field
-
     /**
      * don't give to client
      * resole on backend
      */
     @OneToMany(mappedBy = "cafe", cascade = [CascadeType.ALL])
     @JsonIgnore
-    val districts: List<District>,
+    val streets: List<Street>,
+
+    @OneToMany(mappedBy = "cafe", cascade = [CascadeType.ALL])
+    @JsonIgnore
+    val userOrderList : List<UserOrder>,
 
     val address: String,
 )
