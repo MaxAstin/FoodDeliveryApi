@@ -1,4 +1,4 @@
-package com.bunbeauty.food_delivery.model
+package com.bunbeauty.food_delivery.model.local
 
 import javax.persistence.Embeddable
 import javax.persistence.Entity

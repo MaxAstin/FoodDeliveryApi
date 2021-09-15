@@ -1,7 +1,6 @@
 package com.bunbeauty.food_delivery.repository
 
-import com.bunbeauty.food_delivery.model.MenuProduct
-import org.springframework.data.jdbc.repository.query.Query
+import com.bunbeauty.food_delivery.model.local.MenuProduct
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 

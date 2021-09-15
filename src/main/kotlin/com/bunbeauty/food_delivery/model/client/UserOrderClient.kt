@@ -1,14 +1,15 @@
-package com.bunbeauty.food_delivery.model
+package com.bunbeauty.food_delivery.model.client
 
 import com.bunbeauty.food_delivery.enums.OrderStatus
+import com.bunbeauty.food_delivery.model.local.Cafe
+import com.bunbeauty.food_delivery.model.local.OrderProduct
+import com.bunbeauty.food_delivery.model.local.Profile
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import javax.persistence.*
 import kotlin.jvm.Transient
 
-@Entity
-data class UserOrder(
-    @Id
+data class UserOrderClient(
     var uuid: String,
 
     val time: Long,
@@ -20,25 +21,16 @@ data class UserOrder(
     val bonus: Int?,
 
     var address: String,
-    @Transient
     val addressUuid: String?,
 
-    @ManyToOne
-    @JoinColumn(name = "profile_uuid")
-    @JsonIgnoreProperties("userOrderList")
+    @JsonIgnore
     var profile: Profile?,
-    @Transient
     val profileUuid: String,
 
     //relation
-    @ManyToOne
-    @JoinColumn(name = "cafe_uuid")
     @JsonIgnore
     var cafe: Cafe?,
-    @Transient
     val cafeUuid: String?,
 
-    //@OneToMany(mappedBy = "order")
-    //var cartProducts: List<CartProduct>,
-
+    var orderProducts: List<OrderProduct>?,
 )

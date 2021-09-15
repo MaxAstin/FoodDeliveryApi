@@ -1,4 +1,4 @@
-package com.bunbeauty.food_delivery.model
+package com.bunbeauty.food_delivery.model.local
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.CascadeType

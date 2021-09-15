@@ -1,8 +1,7 @@
 package com.bunbeauty.food_delivery.service
 
-import com.bunbeauty.food_delivery.model.Delivery
+import com.bunbeauty.food_delivery.model.local.Delivery
 import com.bunbeauty.food_delivery.repository.DeliveryRepository
-import com.bunbeauty.food_delivery.repository.MenuProductRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

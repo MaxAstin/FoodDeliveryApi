@@ -1,9 +1,7 @@
 package com.bunbeauty.food_delivery.repository
 
-import com.bunbeauty.food_delivery.model.Address
-import com.bunbeauty.food_delivery.model.Cafe
+import com.bunbeauty.food_delivery.model.local.Address
 import org.springframework.data.repository.CrudRepository
-import java.util.*
 
 interface AddressRepository : CrudRepository<Address, String> {
     fun save(address: Address)

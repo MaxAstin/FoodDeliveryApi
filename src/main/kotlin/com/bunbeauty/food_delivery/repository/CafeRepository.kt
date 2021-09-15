@@ -1,6 +1,6 @@
 package com.bunbeauty.food_delivery.repository
 
-import com.bunbeauty.food_delivery.model.Cafe
+import com.bunbeauty.food_delivery.model.local.Cafe
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param
 

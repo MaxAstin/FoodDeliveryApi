@@ -1,6 +1,6 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.Address
+import com.bunbeauty.food_delivery.model.local.Address
 import com.bunbeauty.food_delivery.service.AddressService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity

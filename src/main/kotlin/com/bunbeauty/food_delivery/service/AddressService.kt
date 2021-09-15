@@ -1,6 +1,6 @@
 package com.bunbeauty.food_delivery.service
 
-import com.bunbeauty.food_delivery.model.Address
+import com.bunbeauty.food_delivery.model.local.Address
 import com.bunbeauty.food_delivery.repository.AddressRepository
 import com.bunbeauty.food_delivery.repository.ProfileRepository
 import com.bunbeauty.food_delivery.repository.StreetRepository
