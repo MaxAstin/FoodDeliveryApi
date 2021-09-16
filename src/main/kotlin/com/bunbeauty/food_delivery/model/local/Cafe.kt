@@ -1,10 +1,7 @@
 package com.bunbeauty.food_delivery.model.local
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import javax.persistence.CascadeType
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.OneToMany
+import javax.persistence.*
 
 
 /**
@@ -27,7 +24,9 @@ data class Cafe(
 
     val visible: Boolean,
 
-    val city: String,
+    @ManyToOne
+    @JoinColumn(name="city_uuid")
+    val city: City,
 
     /**
      * don't give to client

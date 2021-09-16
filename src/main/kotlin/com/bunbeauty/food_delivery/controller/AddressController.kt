@@ -1,5 +1,6 @@
 package com.bunbeauty.food_delivery.controller
 
+import com.bunbeauty.food_delivery.model.client.AddressClient
 import com.bunbeauty.food_delivery.model.local.Address
 import com.bunbeauty.food_delivery.service.AddressService
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +15,7 @@ class AddressController {
     lateinit var addressService: AddressService
 
     @PostMapping
-    fun postAddress(@RequestBody address: Address): ResponseEntity<Any> {
+    fun postAddress(@RequestBody address: AddressClient): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(addressService.insert(address))
         } catch (ex: Exception) {

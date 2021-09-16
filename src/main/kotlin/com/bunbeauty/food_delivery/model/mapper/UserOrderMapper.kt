@@ -37,9 +37,9 @@ class UserOrderMapper {
             address = order.address,
             addressUuid = null,
             profile = order.profile,
-            profileUuid = order.profile?.uuid ?: "",
+            profileUuid = order.profile.uuid,
             cafe = order.cafe,
-            cafeUuid = order.cafe?.uuid ?: "",
+            cafeUuid = order.cafe.uuid,
             orderProducts = order.orderProducts,
         )
     }

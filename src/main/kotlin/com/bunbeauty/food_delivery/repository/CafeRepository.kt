@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param
 interface CafeRepository : CrudRepository<Cafe, String> {
     fun getAllBy(): List<Cafe>
 
-    fun getAllByCity(city: String): List<Cafe>
+    fun getAllByCityUuid(city: String): List<Cafe>
 
     fun getByUuid(uuid: String): Cafe?
 

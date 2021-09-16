@@ -22,9 +22,9 @@ class CafeController {
     }
 
     @GetMapping
-    fun getCafeByCity(@RequestParam city: String): ResponseEntity<Any> {
+    fun getCafeByCity(@RequestParam cityUuid: String): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(cafeService.getCafeByCity(city))
+            ResponseEntity.ok(cafeService.getCafeByCityUuid(cityUuid))
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("Error")
         }

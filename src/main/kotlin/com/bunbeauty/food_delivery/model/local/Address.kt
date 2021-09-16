@@ -1,8 +1,6 @@
 package com.bunbeauty.food_delivery.model.local
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
-import kotlin.jvm.Transient
 
 @Entity
 data class Address(
@@ -11,10 +9,7 @@ data class Address(
 
     @ManyToOne
     @JoinColumn(name = "street_uuid")
-    @JsonIgnore
-    var street: Street?,
-    @Transient
-    val streetUuid: String,
+    var street: Street,
 
     val house: String,
     val flat: String?,
@@ -24,8 +19,5 @@ data class Address(
 
     @ManyToOne
     @JoinColumn(name = "profile_uuid")
-    @JsonIgnore
-    var profile: Profile?,
-    @Transient
-    val profileUuid: String,
+    var profile: Profile,
 )

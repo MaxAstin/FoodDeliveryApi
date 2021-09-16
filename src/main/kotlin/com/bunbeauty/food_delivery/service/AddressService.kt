@@ -1,6 +1,8 @@
 package com.bunbeauty.food_delivery.service
 
+import com.bunbeauty.food_delivery.model.client.AddressClient
 import com.bunbeauty.food_delivery.model.local.Address
+import com.bunbeauty.food_delivery.model.mapper.AddressMapper
 import com.bunbeauty.food_delivery.repository.AddressRepository
 import com.bunbeauty.food_delivery.repository.ProfileRepository
 import com.bunbeauty.food_delivery.repository.StreetRepository
@@ -19,7 +21,10 @@ class AddressService {
     @Autowired
     lateinit var profileRepository: ProfileRepository
 
-    fun insert(address: Address): Address {
+    @Autowired
+    lateinit var addressMapper: AddressMapper
+
+    fun insert(address: AddressClient): AddressClient {
         if (address.uuid.isEmpty())
             address.uuid = UUID.randomUUID().toString()
 
@@ -27,7 +32,8 @@ class AddressService {
             ?: throw Exception(getErrorMessage("street"))
         address.profile =
             profileRepository.getByUuid(address.profileUuid) ?: throw Exception(getErrorMessage("profile"))
-        addressRepository.save(address)
+
+        addressRepository.save(addressMapper.toEntityModel(address))
 
         return address
     }
