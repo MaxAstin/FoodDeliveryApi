@@ -23,7 +23,7 @@ class CityMapper {
         return CityClient(
             uuid = city.uuid,
             name = city.name,
-            cafeList = city.cafeList.map { cafeMapper.toClientModel(it) }
+            //cafeList = city.cafeList.map { cafeMapper.toClientModel(it) }
         )
     }
 }
