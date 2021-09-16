@@ -1,5 +1,6 @@
 package com.bunbeauty.food_delivery.controller
 
+import com.bunbeauty.food_delivery.model.client.ProfileClient
 import com.bunbeauty.food_delivery.model.local.Profile
 import com.bunbeauty.food_delivery.service.ProfileService
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,8 +15,13 @@ class ProfileController {
     lateinit var profileService: ProfileService
 
     @PostMapping
-    fun postProfile(@RequestBody profile: Profile): Profile {
+    fun postProfile(@RequestBody profile: ProfileClient): ProfileClient {
         return profileService.insert(profile)
+    }
+
+    @PatchMapping
+    fun patchProfile(@RequestBody profile: ProfileClient): ProfileClient {
+        return profileService.update(profile)
     }
 
     @GetMapping
