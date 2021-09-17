@@ -38,4 +38,8 @@ class StreetService {
     fun getByCity(cityUuid: String): List<StreetClient> {
         return streetRepository.getByCityUuid(cityUuid).map { streetMapper.toClientModel(it) }
     }
+
+    fun getAll(): List<StreetClient> {
+        return streetRepository.getBy().map { streetMapper.toClientModel(it) }
+    }
 }

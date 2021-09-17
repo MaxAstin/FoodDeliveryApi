@@ -2,6 +2,7 @@ package com.bunbeauty.food_delivery.controller
 
 import com.bunbeauty.food_delivery.model.client.AddressClient
 import com.bunbeauty.food_delivery.model.client.StreetClient
+import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.StreetService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -24,9 +25,12 @@ class StreetController {
     }
 
     @GetMapping
-    fun getStreetListByCity(@RequestParam cityUuid: String): ResponseEntity<Any> {
+    fun getStreetListByCity(@RequestParam(required = false) cityUuid: String?): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(streetService.getByCity(cityUuid))
+            if (cityUuid.isNullOrEmpty())
+                ResponseEntity.ok(streetService.getAll().toListWrapper())
+            else
+                ResponseEntity.ok(streetService.getByCity(cityUuid).toListWrapper())
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("$ex")
         }

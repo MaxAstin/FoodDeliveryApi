@@ -1,6 +1,7 @@
 package com.bunbeauty.food_delivery.controller
 
 import com.bunbeauty.food_delivery.model.client.CityClient
+import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.CityService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -16,7 +17,7 @@ class CityController {
     @GetMapping
     fun getCities(): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(cityService.getAll())
+            ResponseEntity.ok(cityService.getAll().toListWrapper())
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("Error")
         }

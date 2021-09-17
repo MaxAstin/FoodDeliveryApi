@@ -2,6 +2,7 @@ package com.bunbeauty.food_delivery.controller
 
 import com.bunbeauty.food_delivery.model.client.ProfileClient
 import com.bunbeauty.food_delivery.model.local.Profile
+import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.ProfileService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -24,19 +25,13 @@ class ProfileController {
         return profileService.update(profileUuid, email)
     }
 
-    @GetMapping("/all")
-    fun getProfiles(): ResponseEntity<Any> {
-        return try {
-            ResponseEntity.ok(profileService.getAllProfiles())
-        } catch (ex: Exception) {
-            ResponseEntity.badRequest().body("$ex")
-        }
-    }
-
     @GetMapping
-    fun getProfileByUuid(@RequestParam uuid: String): ResponseEntity<Any> {
+    fun getProfileByUuid(@RequestParam(required = false) uuid: String?): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(profileService.getProfileByUuid(uuid))
+            if (uuid.isNullOrEmpty())
+                ResponseEntity.ok(profileService.getAllProfiles().toListWrapper())
+            else
+                ResponseEntity.ok(profileService.getProfileByUuid(uuid))
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("$ex")
         }

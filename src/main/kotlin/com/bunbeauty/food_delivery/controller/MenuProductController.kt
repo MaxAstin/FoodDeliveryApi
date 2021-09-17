@@ -1,5 +1,6 @@
 package com.bunbeauty.food_delivery.controller
 
+import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.MenuProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -15,10 +16,10 @@ class MenuProductController {
     @Autowired
     lateinit var menuProductService: MenuProductService
 
-    @GetMapping("/all")
+    @GetMapping
     fun getMenuProducts(): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(menuProductService.getMenuProducts())
+            ResponseEntity.ok(menuProductService.getMenuProducts().toListWrapper())
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body(ex.message)
         }

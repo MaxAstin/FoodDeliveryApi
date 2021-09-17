@@ -2,6 +2,7 @@ package com.bunbeauty.food_delivery.controller
 
 import com.bunbeauty.food_delivery.model.client.UserOrderClient
 import com.bunbeauty.food_delivery.model.local.UserOrder
+import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.UserOrderService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -26,7 +27,7 @@ class UserOrderController {
     @GetMapping
     fun getUserOrderByUuid(@RequestParam uuid: String): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(userOrderService.getUserOrderListByProfileUuid(uuid))
+            ResponseEntity.ok(userOrderService.getUserOrderListByProfileUuid(uuid).toListWrapper())
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("Error: $ex")
         }
