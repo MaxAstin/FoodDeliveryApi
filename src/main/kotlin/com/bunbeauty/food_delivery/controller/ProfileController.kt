@@ -24,12 +24,21 @@ class ProfileController {
         return profileService.update(profileUuid, email)
     }
 
+    @GetMapping("/all")
+    fun getProfiles(): ResponseEntity<Any> {
+        return try {
+            ResponseEntity.ok(profileService.getAllProfiles())
+        } catch (ex: Exception) {
+            ResponseEntity.badRequest().body("$ex")
+        }
+    }
+
     @GetMapping
     fun getProfileByUuid(@RequestParam uuid: String): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(profileService.getProfileByUuid(uuid))
         } catch (ex: Exception) {
-            ResponseEntity.badRequest().body("Error: $ex")
+            ResponseEntity.badRequest().body("$ex")
         }
     }
 }

@@ -44,4 +44,8 @@ class ProfileService {
             profileRepository.getByUuid(uuid) ?: throw NotFoundWithUuid(Profile::class.simpleName!!)
         )
     }
+
+    fun getAllProfiles(): List<ProfileClient> {
+        return profileRepository.getBy().map { profileMapper.toClientModel(it) }
+    }
 }
