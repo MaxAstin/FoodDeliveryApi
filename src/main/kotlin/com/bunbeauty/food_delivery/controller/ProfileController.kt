@@ -20,8 +20,8 @@ class ProfileController {
     }
 
     @PatchMapping
-    fun patchProfile(@RequestBody profile: ProfileClient): ProfileClient {
-        return profileService.update(profile)
+    fun patchProfile(@RequestParam profileUuid: String, @RequestBody email: String): ProfileClient {
+        return profileService.update(profileUuid, email)
     }
 
     @GetMapping

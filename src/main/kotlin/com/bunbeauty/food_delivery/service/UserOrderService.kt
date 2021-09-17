@@ -1,6 +1,10 @@
 package com.bunbeauty.food_delivery.service
 
+import com.bunbeauty.food_delivery.error.NotFoundWithUuid
 import com.bunbeauty.food_delivery.model.client.UserOrderClient
+import com.bunbeauty.food_delivery.model.local.Cafe
+import com.bunbeauty.food_delivery.model.local.Profile
+import com.bunbeauty.food_delivery.model.local.Street
 import com.bunbeauty.food_delivery.model.local.UserOrder
 import com.bunbeauty.food_delivery.model.mapper.UserOrderMapper
 import com.bunbeauty.food_delivery.repository.CafeRepository
@@ -30,7 +34,7 @@ class UserOrderService {
             order.uuid = UUID.randomUUID().toString()
 
         order.profile = profileRepository.getByUuid(order.profileUuid)
-            ?: throw Exception(getErrorMessage("profile"))
+            ?: throw NotFoundWithUuid(Profile::class.simpleName!!)
 
         if (order.addressUuid.isNullOrEmpty()) {
             if (order.cafeUuid == null)
@@ -41,8 +45,7 @@ class UserOrderService {
         } else {
             //delivery
             order.cafe = cafeRepository.findByAddressUuid(order.addressUuid)
-                ?: throw Exception(getErrorMessage("cafe by address"))
-        }
+                ?: throw NotFoundWithUuid(Cafe::class.simpleName!!)        }
 
         userOrderRepository.save(userOrderMapper.toEntityModel(order))
         return order
@@ -52,7 +55,4 @@ class UserOrderService {
         return userOrderRepository.findByProfileUuid(uuid).map { userOrderMapper.toClientModel(it) }
     }
 
-    fun getErrorMessage(entity: String): String {
-        return "Not found $entity with UUID"
-    }
 }

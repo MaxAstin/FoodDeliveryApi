@@ -1,7 +1,10 @@
 package com.bunbeauty.food_delivery.service
 
+import com.bunbeauty.food_delivery.error.NotFoundWithUuid
 import com.bunbeauty.food_delivery.model.client.AddressClient
 import com.bunbeauty.food_delivery.model.local.Address
+import com.bunbeauty.food_delivery.model.local.Profile
+import com.bunbeauty.food_delivery.model.local.Street
 import com.bunbeauty.food_delivery.model.mapper.AddressMapper
 import com.bunbeauty.food_delivery.repository.AddressRepository
 import com.bunbeauty.food_delivery.repository.ProfileRepository
@@ -29,16 +32,13 @@ class AddressService {
             address.uuid = UUID.randomUUID().toString()
 
         address.street = streetRepository.getByUuid(address.streetUuid)
-            ?: throw Exception(getErrorMessage("street"))
+            ?: throw NotFoundWithUuid(Street::class.simpleName!!)
         address.profile =
-            profileRepository.getByUuid(address.profileUuid) ?: throw Exception(getErrorMessage("profile"))
+            profileRepository.getByUuid(address.profileUuid) ?: throw NotFoundWithUuid(Profile::class.simpleName!!)
 
         addressRepository.save(addressMapper.toEntityModel(address))
 
         return address
     }
 
-    fun getErrorMessage(entity: String): String {
-        return "Not found $entity with UUID"
-    }
 }

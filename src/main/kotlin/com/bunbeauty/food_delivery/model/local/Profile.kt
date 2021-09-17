@@ -7,7 +7,7 @@ data class Profile(
     @Id
     var uuid: String,
     val phone: String,
-    val email: String,
+    var email: String,
     @OneToMany(mappedBy = "profile", cascade = [CascadeType.ALL])
     val addressList: List<Address>,
 

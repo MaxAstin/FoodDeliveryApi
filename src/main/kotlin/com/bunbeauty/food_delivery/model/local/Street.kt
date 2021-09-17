@@ -11,7 +11,7 @@ data class Street(
 
     @ManyToOne
     @JoinColumn(name="cafe_uuid")
-    val cafe: Cafe?,
+    val cafe: Cafe,
 
     @OneToMany(mappedBy = "street", cascade = [CascadeType.ALL])
     val addressList: List<Address>

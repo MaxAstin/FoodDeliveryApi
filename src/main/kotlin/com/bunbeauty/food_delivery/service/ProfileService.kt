@@ -1,6 +1,9 @@
 package com.bunbeauty.food_delivery.service
 
+import com.bunbeauty.food_delivery.error.NotFoundWithUuid
 import com.bunbeauty.food_delivery.model.client.ProfileClient
+import com.bunbeauty.food_delivery.model.local.Profile
+import com.bunbeauty.food_delivery.model.local.Street
 import com.bunbeauty.food_delivery.model.mapper.ProfileMapper
 import com.bunbeauty.food_delivery.repository.ProfileRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,21 +27,21 @@ class ProfileService {
         return profile
     }
 
-    fun update(profile: ProfileClient): ProfileClient {
-        if (profile.uuid.isEmpty())
+    fun update(profileUuid: String, email: String): ProfileClient {
+        if (profileUuid.isEmpty())
             throw Exception("Uuid was empty")
 
-        if (profileRepository.getByUuid(profile.uuid) == null)
-            throw Exception("No profile with this uuid")
+        val profile = profileRepository.getByUuid(profileUuid) ?: throw NotFoundWithUuid(Profile::class.simpleName!!)
+        profile.email = email
 
-        profileRepository.save(profileMapper.toEntityModel(profile))
+        profileRepository.save(profile)
 
-        return profile
+        return profileMapper.toClientModel(profile)
     }
 
     fun getProfileByUuid(uuid: String): ProfileClient {
         return profileMapper.toClientModel(
-            profileRepository.getByUuid(uuid) ?: throw Exception("No profile with this uuid")
+            profileRepository.getByUuid(uuid) ?: throw NotFoundWithUuid(Profile::class.simpleName!!)
         )
     }
 }
