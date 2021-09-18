@@ -10,7 +10,7 @@ data class AddressClient(
     var uuid: String,
 
     @JsonIgnore
-    var street: Street?,
+    var street: StreetClient?,
     val streetUuid: String,
 
     val house: String,
