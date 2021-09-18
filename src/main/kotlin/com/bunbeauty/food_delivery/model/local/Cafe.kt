@@ -26,7 +26,7 @@ data class Cafe(
 
     @ManyToOne
     @JoinColumn(name="city_uuid")
-    val city: City,
+    var city: City,
 
     /**
      * don't give to client

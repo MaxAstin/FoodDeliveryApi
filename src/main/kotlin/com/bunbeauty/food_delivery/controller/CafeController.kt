@@ -1,6 +1,7 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.ListWrapper
+import com.bunbeauty.food_delivery.model.client.CafeClient
+import com.bunbeauty.food_delivery.model.client.StreetClient
 import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.CafeService
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,6 +14,16 @@ class CafeController {
 
     @Autowired
     lateinit var cafeService: CafeService
+
+
+    @PostMapping
+    fun postCare(@RequestBody cafeClient: CafeClient): ResponseEntity<Any> {
+        return try {
+            ResponseEntity.ok(cafeService.insert(cafeClient))
+        } catch (ex: Exception) {
+            ResponseEntity.badRequest().body("$ex")
+        }
+    }
 
     @GetMapping
     fun getCafeByCity(@RequestParam(required = false) cityUuid: String?): ResponseEntity<Any> {

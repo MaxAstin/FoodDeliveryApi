@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface CityRepository : CrudRepository<City, String> {
     fun getAllBy(): List<City>
+    fun getByUuid(uuid: String): City?
 }
