@@ -20,7 +20,7 @@ class CafeController {
             if (cityUuid.isNullOrEmpty())
                 ResponseEntity.ok(cafeService.getCafes().toListWrapper())
             else
-                ResponseEntity.ok(cafeService.getCafeByCityUuid(cityUuid))
+                ResponseEntity.ok(cafeService.getCafeByCityUuid(cityUuid).toListWrapper())
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("$ex")
         }
