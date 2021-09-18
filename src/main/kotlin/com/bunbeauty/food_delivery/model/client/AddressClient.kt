@@ -9,7 +9,6 @@ import kotlin.jvm.Transient
 data class AddressClient(
     var uuid: String,
 
-    @JsonIgnore
     var street: StreetClient?,
     val streetUuid: String,
 
