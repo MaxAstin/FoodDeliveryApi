@@ -11,6 +11,7 @@ data class StreetClient(
     @JsonIgnore
     var cafe: Cafe?,
     val cafeUuid: String,
+    val cityUuid: String,
 
     @JsonIgnore
     var addressList: List<Address>?

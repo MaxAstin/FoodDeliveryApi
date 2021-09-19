@@ -3,7 +3,6 @@ package com.bunbeauty.food_delivery.service
 import com.bunbeauty.food_delivery.error.NotFoundWithUuid
 import com.bunbeauty.food_delivery.model.client.StreetClient
 import com.bunbeauty.food_delivery.model.local.Cafe
-import com.bunbeauty.food_delivery.model.local.Street
 import com.bunbeauty.food_delivery.model.mapper.StreetMapper
 import com.bunbeauty.food_delivery.repository.CafeRepository
 import com.bunbeauty.food_delivery.repository.StreetRepository

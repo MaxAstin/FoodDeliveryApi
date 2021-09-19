@@ -22,6 +22,7 @@ class StreetMapper {
             name = street.name,
             cafe = street.cafe,
             cafeUuid = street.cafe.uuid,
+            cityUuid = street.cafe.city.uuid,
             addressList = street.addressList,
         )
     }
