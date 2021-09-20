@@ -6,7 +6,7 @@ import javax.persistence.Id
 @Entity
 data class Delivery(
     @Id
-    val uuid: String,
+    var uuid: String,
     val cost: Int,
     val forFree: Int
 )
