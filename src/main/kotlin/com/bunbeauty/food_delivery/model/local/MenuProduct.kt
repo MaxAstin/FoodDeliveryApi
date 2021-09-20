@@ -1,9 +1,6 @@
 package com.bunbeauty.food_delivery.model.local
 
-import javax.persistence.Embeddable
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Embeddable
@@ -17,7 +14,9 @@ data class MenuProduct(
     val description: String,
     val comboDescription: String?,
     val photoLink: String?,
-    val productCode: String,
     val barcode: Int?,
-    val visible: Boolean
+    val visible: Boolean,
+
+    @ManyToMany
+    val productCodes: Set<ProductCode>
 )
