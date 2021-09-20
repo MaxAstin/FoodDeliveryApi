@@ -1,6 +1,7 @@
 package com.bunbeauty.food_delivery.service
 
 import com.bunbeauty.food_delivery.error.NotFoundWithUuid
+import com.bunbeauty.food_delivery.model.client.PatchProfileClient
 import com.bunbeauty.food_delivery.model.client.ProfileClient
 import com.bunbeauty.food_delivery.model.local.Profile
 import com.bunbeauty.food_delivery.model.local.Street
@@ -27,16 +28,23 @@ class ProfileService {
         return profile
     }
 
-    fun update(profileUuid: String, email: String): ProfileClient {
+    fun update(profileUuid: String, profile: PatchProfileClient): ProfileClient {
         if (profileUuid.isEmpty())
             throw Exception("Uuid was empty")
 
-        val profile = profileRepository.getByUuid(profileUuid) ?: throw NotFoundWithUuid(Profile::class.simpleName!!)
-        profile.email = email
+        val profileFromLocal =
+            profileRepository.getByUuid(profileUuid) ?: throw NotFoundWithUuid(Profile::class.simpleName!!)
 
-        profileRepository.save(profile)
+        val updatedProfile = Profile(
+            uuid = profileUuid,
+            phone = profile.phone ?: profileFromLocal.phone,
+            email = profile.email ?: profileFromLocal.email,
+            addressList = profileFromLocal.addressList,
+            userOrderList = profileFromLocal.userOrderList
+        )
 
-        return profileMapper.toClientModel(profile)
+        profileRepository.save(updatedProfile)
+        return profileMapper.toClientModel(updatedProfile)
     }
 
     fun getProfileByUuid(uuid: String): ProfileClient {
