@@ -1,6 +1,5 @@
 package com.bunbeauty.food_delivery.model.client
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 
 data class MenuProductClient(
     var uuid: String,
@@ -13,7 +12,6 @@ data class MenuProductClient(
     val photoLink: String?,
     val barcode: Int?,
     val visible: Boolean,
-    @JsonIgnore
     val productCodeUuids: Set<String>?,
     var productCodes: Set<ProductCodeClient>?
 )

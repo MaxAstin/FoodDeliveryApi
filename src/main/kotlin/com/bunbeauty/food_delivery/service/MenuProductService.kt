@@ -2,7 +2,6 @@ package com.bunbeauty.food_delivery.service
 
 import com.bunbeauty.food_delivery.error.NotFoundWithUuid
 import com.bunbeauty.food_delivery.model.client.MenuProductClient
-import com.bunbeauty.food_delivery.model.local.MenuProduct
 import com.bunbeauty.food_delivery.model.local.ProductCode
 import com.bunbeauty.food_delivery.model.mapper.MenuProductMapper
 import com.bunbeauty.food_delivery.model.mapper.ProductCodeMapper
