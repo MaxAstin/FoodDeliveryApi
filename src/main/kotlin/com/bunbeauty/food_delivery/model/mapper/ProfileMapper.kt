@@ -1,5 +1,6 @@
 package com.bunbeauty.food_delivery.model.mapper
 
+import com.bunbeauty.food_delivery.model.client.profile.PostProfileClient
 import com.bunbeauty.food_delivery.model.client.profile.ProfileClient
 import com.bunbeauty.food_delivery.model.local.Profile
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +15,7 @@ class ProfileMapper {
     @Autowired
     lateinit var userOrderMapper: UserOrderMapper
 
-    fun toEntityModel(profile: ProfileClient): Profile {
+    fun toEntityModel(profile: PostProfileClient): Profile {
         return Profile(
             uuid = profile.uuid,
             phone = profile.phone,
@@ -24,7 +25,7 @@ class ProfileMapper {
         )
     }
 
-    fun toClientModel(profile: Profile): ProfileClient {
+    fun toClientModel(profile: Profile, streetMapper: StreetMapper): ProfileClient {
         return ProfileClient(
             uuid = profile.uuid,
             phone = profile.phone,

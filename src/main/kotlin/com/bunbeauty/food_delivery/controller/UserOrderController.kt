@@ -1,7 +1,7 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.client.UserOrderClient
-import com.bunbeauty.food_delivery.model.local.UserOrder
+import com.bunbeauty.food_delivery.model.client.user_order.PostUserOrderClient
+import com.bunbeauty.food_delivery.model.client.user_order.UserOrderClient
 import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.UserOrderService
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,20 +16,24 @@ class UserOrderController {
     lateinit var userOrderService: UserOrderService
 
     @PostMapping
-    fun postUserOrder(@RequestBody order: UserOrderClient): ResponseEntity<Any> {
+    fun postUserOrder(@RequestBody order: PostUserOrderClient): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(userOrderService.insert(order))
         } catch (ex: Exception) {
-            ResponseEntity.badRequest().body("Error $ex")
+            ResponseEntity.badRequest().body("$ex")
         }
     }
 
     @GetMapping
-    fun getUserOrderByUuid(@RequestParam uuid: String): ResponseEntity<Any> {
+    fun getUserOrderByUuid(@RequestParam(required = false) uuid: String?): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(userOrderService.getUserOrderListByProfileUuid(uuid).toListWrapper())
+            if (uuid.isNullOrEmpty()) {
+                ResponseEntity.ok(userOrderService.getUserOrderList().toListWrapper())
+            } else {
+                ResponseEntity.ok(userOrderService.getUserOrderListByProfileUuid(uuid).toListWrapper())
+            }
         } catch (ex: Exception) {
-            ResponseEntity.badRequest().body("Error: $ex")
+            ResponseEntity.badRequest().body("$ex")
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.client.CafeClient
-import com.bunbeauty.food_delivery.model.client.StreetClient
+import com.bunbeauty.food_delivery.model.client.cafe.PostCafeClient
 import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.CafeService
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +16,7 @@ class CafeController {
 
 
     @PostMapping
-    fun postCare(@RequestBody cafeClient: CafeClient): ResponseEntity<Any> {
+    fun postCare(@RequestBody cafeClient: PostCafeClient): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(cafeService.insert(cafeClient))
         } catch (ex: Exception) {

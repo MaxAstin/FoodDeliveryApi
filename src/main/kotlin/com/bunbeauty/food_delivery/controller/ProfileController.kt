@@ -1,6 +1,7 @@
 package com.bunbeauty.food_delivery.controller
 
 import com.bunbeauty.food_delivery.model.client.profile.PatchProfileClient
+import com.bunbeauty.food_delivery.model.client.profile.PostProfileClient
 import com.bunbeauty.food_delivery.model.client.profile.ProfileClient
 import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.ProfileService
@@ -16,14 +17,12 @@ class ProfileController {
     lateinit var profileService: ProfileService
 
     @PostMapping
-    fun postProfile(@RequestBody profile: ProfileClient): ProfileClient {
-        return profileService.insert(profile)
-
-        /*return try {
-            ResponseEntity.ok(profileService.update(patchProfileClient))
+    fun postProfile(@RequestBody profile: PostProfileClient): ResponseEntity<Any>  {
+        return try {
+            ResponseEntity.ok(profileService.insert(profile))
         } catch (ex: Exception) {
-            ResponseEntity.badRequest().body("Error $ex")
-        }*/
+            ResponseEntity.badRequest().body("$ex")
+        }
     }
 
     @PatchMapping
@@ -34,7 +33,7 @@ class ProfileController {
         return try {
             ResponseEntity.ok(profileService.update(uuid, patchProfileClient))
         } catch (ex: Exception) {
-            ResponseEntity.badRequest().body("Error $ex")
+            ResponseEntity.badRequest().body("$ex")
         }
     }
 

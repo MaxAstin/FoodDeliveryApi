@@ -1,9 +1,13 @@
 package com.bunbeauty.food_delivery.model.mapper
 
-import com.bunbeauty.food_delivery.model.client.AddressClient
-import com.bunbeauty.food_delivery.model.client.UserOrderClient
+import com.bunbeauty.food_delivery.error.NotFoundWithUuid
+import com.bunbeauty.food_delivery.model.client.address.AddressClient
+import com.bunbeauty.food_delivery.model.client.address.PostAddressClient
 import com.bunbeauty.food_delivery.model.local.Address
-import com.bunbeauty.food_delivery.model.local.UserOrder
+import com.bunbeauty.food_delivery.model.local.Profile
+import com.bunbeauty.food_delivery.model.local.Street
+import com.bunbeauty.food_delivery.repository.ProfileRepository
+import com.bunbeauty.food_delivery.repository.StreetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -11,18 +15,26 @@ import org.springframework.stereotype.Service
 class AddressMapper {
 
     @Autowired
+    lateinit var profileRepository: ProfileRepository
+
+    @Autowired
+    lateinit var streetRepository: StreetRepository
+
+    @Autowired
     lateinit var streetMapper: StreetMapper
 
-    fun toEntityModel(address: AddressClient): Address {
+    fun toEntityModel(address: PostAddressClient): Address {
         return Address(
             uuid = address.uuid,
-            street = streetMapper.toEntityModel(address.street!!),
+            street = streetRepository.getByUuid(address.streetUuid)
+                ?: throw NotFoundWithUuid(Street::class.simpleName!!),
             house = address.house,
             flat = address.flat,
             entrance = address.entrance,
             comment = address.comment,
             floor = address.floor,
-            profile = address.profile!!,
+            profile = profileRepository.getByUuid(address.profileUuid)
+                ?: throw NotFoundWithUuid(Profile::class.simpleName!!),
         )
     }
 
@@ -36,7 +48,6 @@ class AddressMapper {
             entrance = address.entrance,
             comment = address.comment,
             floor = address.floor,
-            profile = address.profile,
             profileUuid = address.profile.uuid
         )
     }

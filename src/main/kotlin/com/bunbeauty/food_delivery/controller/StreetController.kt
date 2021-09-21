@@ -1,7 +1,7 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.client.AddressClient
-import com.bunbeauty.food_delivery.model.client.StreetClient
+import com.bunbeauty.food_delivery.model.client.street.PostStreetClient
+import com.bunbeauty.food_delivery.model.client.street.StreetClient
 import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.StreetService
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,7 +16,7 @@ class StreetController {
     lateinit var streetService: StreetService
 
     @PostMapping
-    fun postStreet(@RequestBody streetClient: StreetClient): ResponseEntity<Any> {
+    fun postStreet(@RequestBody streetClient: PostStreetClient): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(streetService.insert(streetClient))
         } catch (ex: Exception) {

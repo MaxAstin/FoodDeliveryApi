@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface UserOrderRepository : CrudRepository<UserOrder, String> {
     fun findByProfileUuid(profileUuid: String) : List<UserOrder>
+    fun getAllBy() : List<UserOrder>
 }

@@ -4,6 +4,6 @@ import com.bunbeauty.food_delivery.model.local.Address
 import org.springframework.data.repository.CrudRepository
 
 interface AddressRepository : CrudRepository<Address, String> {
-    fun save(address: Address)
     fun getByUuid(uuid: String): Address?
+    fun getAllBy(): List<Address>
 }

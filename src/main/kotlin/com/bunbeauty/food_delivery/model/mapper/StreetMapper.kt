@@ -1,18 +1,29 @@
 package com.bunbeauty.food_delivery.model.mapper
 
-import com.bunbeauty.food_delivery.model.client.StreetClient
+import com.bunbeauty.food_delivery.error.NotFoundWithUuid
+import com.bunbeauty.food_delivery.model.client.address.AddressClient
+import com.bunbeauty.food_delivery.model.client.street.PostStreetClient
+import com.bunbeauty.food_delivery.model.client.street.StreetClient
+import com.bunbeauty.food_delivery.model.local.Cafe
 import com.bunbeauty.food_delivery.model.local.Street
+import com.bunbeauty.food_delivery.repository.CafeRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
 class StreetMapper {
 
-    fun toEntityModel(street: StreetClient): Street {
+    @Autowired
+    lateinit var cafeRepository: CafeRepository
+
+    fun toEntityModel(street: PostStreetClient): Street {
         return Street(
             uuid = street.uuid,
             name = street.name,
-            cafe = street.cafe!!,
-            addressList = street.addressList ?: emptyList(),
+            cafe = cafeRepository.getByUuid(street.cafeUuid)
+                ?: throw NotFoundWithUuid(Cafe::class.simpleName!!),
+            //могу ли удалить все привязанные
+            addressList = emptyList(),
         )
     }
 
@@ -20,10 +31,8 @@ class StreetMapper {
         return StreetClient(
             uuid = street.uuid,
             name = street.name,
-            cafe = street.cafe,
             cafeUuid = street.cafe.uuid,
             cityUuid = street.cafe.city.uuid,
-            addressList = street.addressList,
         )
     }
 

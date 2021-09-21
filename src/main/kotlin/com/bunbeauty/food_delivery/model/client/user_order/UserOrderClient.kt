@@ -1,4 +1,4 @@
-package com.bunbeauty.food_delivery.model.client
+package com.bunbeauty.food_delivery.model.client.user_order
 
 import com.bunbeauty.food_delivery.enums.OrderStatus
 import com.bunbeauty.food_delivery.model.local.Cafe
@@ -12,7 +12,7 @@ import kotlin.jvm.Transient
 data class UserOrderClient(
     var uuid: String,
 
-    val time: Long,
+    var time: Long,
     val orderStatus: OrderStatus,
     val isDelivery: Boolean,
     val code: String,

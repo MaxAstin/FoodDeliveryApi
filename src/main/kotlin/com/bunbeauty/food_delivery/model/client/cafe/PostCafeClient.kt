@@ -1,8 +1,6 @@
-package com.bunbeauty.food_delivery.model.client
+package com.bunbeauty.food_delivery.model.client.cafe
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-
-data class CafeClient(
+data class PostCafeClient(
     var uuid: String,
     val fromTime: String,
     val toTime: String,
@@ -11,8 +9,6 @@ data class CafeClient(
     val longitude: Double,
     val visible: Boolean,
 
-    @JsonIgnore
-    var city: CityClient?,
     val cityUuid: String,
 
     val address: String,

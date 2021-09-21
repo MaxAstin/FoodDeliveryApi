@@ -1,9 +1,11 @@
 package com.bunbeauty.food_delivery.model.mapper
 
-import com.bunbeauty.food_delivery.model.client.CafeClient
-import com.bunbeauty.food_delivery.model.client.CityClient
+import com.bunbeauty.food_delivery.error.NotFoundWithUuid
+import com.bunbeauty.food_delivery.model.client.cafe.CafeClient
+import com.bunbeauty.food_delivery.model.client.cafe.PostCafeClient
 import com.bunbeauty.food_delivery.model.local.Cafe
 import com.bunbeauty.food_delivery.model.local.City
+import com.bunbeauty.food_delivery.repository.CityRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -11,9 +13,9 @@ import org.springframework.stereotype.Service
 class CafeMapper {
 
     @Autowired
-    lateinit var cityMapper: CityMapper
+    lateinit var cityRepository: CityRepository
 
-    fun toEntityModel(cafe: CafeClient): Cafe {
+    fun toEntityModel(cafe: PostCafeClient): Cafe {
         return Cafe(
             uuid = cafe.uuid,
             fromTime = cafe.fromTime,
@@ -22,7 +24,7 @@ class CafeMapper {
             latitude = cafe.latitude,
             longitude = cafe.longitude,
             visible = cafe.visible,
-            city = cityMapper.toEntityModel(cafe.city!!),
+            city = cityRepository.getByUuid(cafe.cityUuid) ?: throw NotFoundWithUuid(City::class.simpleName!!),
             streets = emptyList(),
             userOrderList = emptyList(),
             address = cafe.address,
@@ -38,7 +40,6 @@ class CafeMapper {
             latitude = cafe.latitude,
             longitude = cafe.longitude,
             visible = cafe.visible,
-            city = cityMapper.toClientModel(cafe.city),
             cityUuid = cafe.city.uuid,
             address = cafe.address,
         )
