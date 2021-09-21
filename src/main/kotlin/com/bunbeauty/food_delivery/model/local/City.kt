@@ -9,6 +9,8 @@ data class City(
 
     val name: String,
 
+    val timeOffset: Int?,
+
     @OneToMany(mappedBy = "city", cascade = [CascadeType.ALL])
     val cafeList : List<Cafe>,
 )

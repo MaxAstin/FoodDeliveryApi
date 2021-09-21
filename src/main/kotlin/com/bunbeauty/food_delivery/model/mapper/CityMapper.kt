@@ -8,13 +8,11 @@ import org.springframework.stereotype.Service
 @Service
 class CityMapper {
 
-    @Autowired
-    lateinit var cafeMapper: CafeMapper
-
     fun toEntityModel(city: CityClient): City {
         return City(
             uuid = city.uuid,
             name = city.name,
+            timeOffset = city.offset,
             cafeList = emptyList()
         )
     }
@@ -23,7 +21,7 @@ class CityMapper {
         return CityClient(
             uuid = city.uuid,
             name = city.name,
-            //cafeList = city.cafeList.map { cafeMapper.toClientModel(it) }
+            offset = city.timeOffset,
         )
     }
 }
