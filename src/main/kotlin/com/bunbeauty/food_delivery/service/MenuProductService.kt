@@ -1,7 +1,8 @@
 package com.bunbeauty.food_delivery.service
 
 import com.bunbeauty.food_delivery.error.NotFoundWithUuid
-import com.bunbeauty.food_delivery.model.client.MenuProductClient
+import com.bunbeauty.food_delivery.model.client.menu_product.MenuProductClient
+import com.bunbeauty.food_delivery.model.client.menu_product.PostMenuProductClient
 import com.bunbeauty.food_delivery.model.local.ProductCode
 import com.bunbeauty.food_delivery.model.mapper.MenuProductMapper
 import com.bunbeauty.food_delivery.model.mapper.ProductCodeMapper
@@ -26,7 +27,7 @@ class MenuProductService {
     @Autowired
     lateinit var menuProductMapper: MenuProductMapper
 
-    fun insert(menuProduct: MenuProductClient): MenuProductClient {
+    fun insert(menuProduct: PostMenuProductClient): PostMenuProductClient {
 
         if (menuProduct.uuid.isEmpty())
             menuProduct.uuid = UUID.randomUUID().toString()

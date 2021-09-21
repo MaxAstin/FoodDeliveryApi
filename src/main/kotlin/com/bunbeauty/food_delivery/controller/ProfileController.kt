@@ -1,8 +1,7 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.client.PatchProfileClient
-import com.bunbeauty.food_delivery.model.client.ProfileClient
-import com.bunbeauty.food_delivery.model.local.Profile
+import com.bunbeauty.food_delivery.model.client.profile.PatchProfileClient
+import com.bunbeauty.food_delivery.model.client.profile.ProfileClient
 import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.ProfileService
 import org.springframework.beans.factory.annotation.Autowired

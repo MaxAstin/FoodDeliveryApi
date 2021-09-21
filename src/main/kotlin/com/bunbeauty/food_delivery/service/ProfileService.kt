@@ -1,10 +1,9 @@
 package com.bunbeauty.food_delivery.service
 
 import com.bunbeauty.food_delivery.error.NotFoundWithUuid
-import com.bunbeauty.food_delivery.model.client.PatchProfileClient
-import com.bunbeauty.food_delivery.model.client.ProfileClient
+import com.bunbeauty.food_delivery.model.client.profile.PatchProfileClient
+import com.bunbeauty.food_delivery.model.client.profile.ProfileClient
 import com.bunbeauty.food_delivery.model.local.Profile
-import com.bunbeauty.food_delivery.model.local.Street
 import com.bunbeauty.food_delivery.model.mapper.ProfileMapper
 import com.bunbeauty.food_delivery.repository.ProfileRepository
 import org.springframework.beans.factory.annotation.Autowired

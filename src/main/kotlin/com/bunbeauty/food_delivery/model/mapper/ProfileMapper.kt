@@ -1,6 +1,6 @@
 package com.bunbeauty.food_delivery.model.mapper
 
-import com.bunbeauty.food_delivery.model.client.ProfileClient
+import com.bunbeauty.food_delivery.model.client.profile.ProfileClient
 import com.bunbeauty.food_delivery.model.local.Profile
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

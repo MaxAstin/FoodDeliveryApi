@@ -1,13 +1,12 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.client.MenuProductClient
-import com.bunbeauty.food_delivery.model.local.Delivery
+import com.bunbeauty.food_delivery.model.client.menu_product.MenuProductClient
+import com.bunbeauty.food_delivery.model.client.menu_product.PostMenuProductClient
 import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.MenuProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
 
 @RestController
 @RequestMapping("/menuProduct")
@@ -17,7 +16,7 @@ class MenuProductController {
     lateinit var menuProductService: MenuProductService
 
     @PostMapping
-    fun postMenuProduct(@RequestBody menuProductClient: MenuProductClient): ResponseEntity<Any> {
+    fun postMenuProduct(@RequestBody menuProductClient: PostMenuProductClient): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(menuProductService.insert(menuProductClient))
         } catch (ex: Exception) {

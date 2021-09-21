@@ -1,4 +1,7 @@
-package com.bunbeauty.food_delivery.model.client
+package com.bunbeauty.food_delivery.model.client.profile
+
+import com.bunbeauty.food_delivery.model.client.AddressClient
+import com.bunbeauty.food_delivery.model.client.UserOrderClient
 
 data class ProfileClient(
     var uuid: String,

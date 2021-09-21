@@ -1,4 +1,6 @@
-package com.bunbeauty.food_delivery.model.client
+package com.bunbeauty.food_delivery.model.client.menu_product
+
+import com.bunbeauty.food_delivery.model.client.ProductCodeClient
 
 
 data class MenuProductClient(
@@ -12,6 +14,5 @@ data class MenuProductClient(
     val photoLink: String?,
     val barcode: Int?,
     val visible: Boolean,
-    val productCodeUuids: Set<String>?,
     var productCodes: Set<ProductCodeClient>?
 )
