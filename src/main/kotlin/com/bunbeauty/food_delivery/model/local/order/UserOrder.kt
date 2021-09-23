@@ -1,10 +1,9 @@
-package com.bunbeauty.food_delivery.model.local
+package com.bunbeauty.food_delivery.model.local.order
 
 import com.bunbeauty.food_delivery.enums.OrderStatus
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.bunbeauty.food_delivery.model.local.Cafe
+import com.bunbeauty.food_delivery.model.local.Profile
 import javax.persistence.*
-import kotlin.jvm.Transient
 
 @Entity
 data class UserOrder(
@@ -22,14 +21,12 @@ data class UserOrder(
 
     @ManyToOne
     @JoinColumn(name = "profile_uuid")
-    //@JsonIgnoreProperties("userOrderList")
     var profile: Profile,
 
-    //relation
     @ManyToOne
     @JoinColumn(name = "cafe_uuid")
     var cafe: Cafe,
 
     @OneToMany(mappedBy = "userOrder", cascade = [CascadeType.ALL])
-    var orderProducts: List<OrderProduct>,
+    var orderCartProducts: List<OrderCartProduct>,
 )

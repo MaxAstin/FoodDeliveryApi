@@ -21,19 +21,19 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc:2.5.4")
+    implementation("org.springframework.boot:spring-boot-starter-web:2.5.4")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.5")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlin:kotlin-noarg")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("javax.xml.bind:jaxb-api")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")
+    implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
 
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    runtimeOnly("org.postgresql:postgresql")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc:2.5.4")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.4")
+    runtimeOnly("org.postgresql:postgresql:42.2.23.jre7")
 }
 
 tasks.withType<KotlinCompile> {

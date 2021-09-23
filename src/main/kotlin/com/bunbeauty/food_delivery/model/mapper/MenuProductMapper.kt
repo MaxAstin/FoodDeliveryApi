@@ -2,7 +2,9 @@ package com.bunbeauty.food_delivery.model.mapper
 
 import com.bunbeauty.food_delivery.model.client.menu_product.MenuProductClient
 import com.bunbeauty.food_delivery.model.client.menu_product.PostMenuProductClient
+import com.bunbeauty.food_delivery.model.client.order_menu_product.OrderMenuProductClient
 import com.bunbeauty.food_delivery.model.local.MenuProduct
+import com.bunbeauty.food_delivery.model.local.order.OrderMenuProduct
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -44,4 +46,27 @@ class MenuProductMapper {
         )
     }
 
+    fun toOrderMenuProductEntity(menuProduct: MenuProduct): OrderMenuProduct {
+        return OrderMenuProduct(
+            name = menuProduct.name,
+            cost = menuProduct.cost,
+            discountCost = menuProduct.discountCost,
+            weight = menuProduct.weight,
+            description = menuProduct.description,
+            comboDescription = menuProduct.comboDescription,
+            barcode = menuProduct.barcode,
+        )
+    }
+
+    fun toOrderMenuProductClient(orderMenuProduct: OrderMenuProduct): OrderMenuProductClient{
+        return OrderMenuProductClient(
+            name = orderMenuProduct.name,
+            cost = orderMenuProduct.cost,
+            discountCost = orderMenuProduct.discountCost,
+            weight = orderMenuProduct.weight,
+            description = orderMenuProduct.description,
+            comboDescription = orderMenuProduct.comboDescription,
+            barcode = orderMenuProduct.barcode,
+        )
+    }
 }

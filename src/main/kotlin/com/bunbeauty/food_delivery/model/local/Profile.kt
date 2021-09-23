@@ -1,5 +1,6 @@
 package com.bunbeauty.food_delivery.model.local
 
+import com.bunbeauty.food_delivery.model.local.order.UserOrder
 import javax.persistence.*
 
 @Entity

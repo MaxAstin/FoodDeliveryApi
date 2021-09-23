@@ -1,13 +1,7 @@
 package com.bunbeauty.food_delivery.model.client.user_order
 
 import com.bunbeauty.food_delivery.enums.OrderStatus
-import com.bunbeauty.food_delivery.model.local.Cafe
-import com.bunbeauty.food_delivery.model.local.OrderProduct
-import com.bunbeauty.food_delivery.model.local.Profile
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import javax.persistence.*
-import kotlin.jvm.Transient
+import com.bunbeauty.food_delivery.model.client.order_cart_product.OrderCartProductClient
 
 data class UserOrderClient(
     var uuid: String,
@@ -23,14 +17,8 @@ data class UserOrderClient(
     var address: String,
     val addressUuid: String?,
 
-    @JsonIgnore
-    var profile: Profile?,
     val profileUuid: String,
-
-    //relation
-    @JsonIgnore
-    var cafe: Cafe?,
     val cafeUuid: String?,
 
-    var orderProducts: List<OrderProduct>?,
+    var orderProducts: List<OrderCartProductClient>?,
 )

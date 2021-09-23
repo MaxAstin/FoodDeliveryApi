@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MenuProductRepository: CrudRepository<MenuProduct, String> {
+interface MenuProductRepository : CrudRepository<MenuProduct, String> {
     fun getAllBy(): List<MenuProduct>
+    fun getByUuid(uuid: String): MenuProduct?
 }

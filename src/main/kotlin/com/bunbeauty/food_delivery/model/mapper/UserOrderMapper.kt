@@ -5,7 +5,7 @@ import com.bunbeauty.food_delivery.model.client.user_order.PostUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.UserOrderClient
 import com.bunbeauty.food_delivery.model.local.Cafe
 import com.bunbeauty.food_delivery.model.local.Profile
-import com.bunbeauty.food_delivery.model.local.UserOrder
+import com.bunbeauty.food_delivery.model.local.order.UserOrder
 import com.bunbeauty.food_delivery.repository.CafeRepository
 import com.bunbeauty.food_delivery.repository.ProfileRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,6 +20,9 @@ class UserOrderMapper {
 
     @Autowired
     lateinit var cafeRepository: CafeRepository
+
+    @Autowired
+    lateinit var orderCartProductMapper: OrderCartProductMapper
 
     fun toEntityModel(order: PostUserOrderClient): UserOrder {
         return UserOrder(
@@ -44,7 +47,7 @@ class UserOrderMapper {
                 cafeRepository.findByAddressUuid(order.addressUuid)
                     ?: throw NotFoundWithUuid(Cafe::class.simpleName!!)
             },
-            orderProducts = order.orderProducts ?: emptyList(),
+            orderCartProducts = emptyList()
         )
     }
 
@@ -60,11 +63,9 @@ class UserOrderMapper {
             bonus = order.bonus,
             address = order.address,
             addressUuid = null,
-            profile = order.profile,
             profileUuid = order.profile.uuid,
-            cafe = order.cafe,
             cafeUuid = order.cafe.uuid,
-            orderProducts = order.orderProducts,
+            orderProducts = order.orderCartProducts.map(orderCartProductMapper::toClientModel),
         )
     }
 
