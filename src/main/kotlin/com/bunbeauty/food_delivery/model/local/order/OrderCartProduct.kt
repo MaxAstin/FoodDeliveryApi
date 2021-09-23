@@ -15,5 +15,5 @@ data class OrderCartProduct(
 
     @ManyToOne
     @JoinColumn(name = "user_order_uuid")
-    var userOrder: UserOrder?
+    var userOrder: UserOrder
 )

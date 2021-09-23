@@ -10,5 +10,6 @@ class OrderMenuProduct(
     var weight: Int?,
     var description: String,
     var comboDescription: String?,
-    var barcode: Int?
+    var barcode: Int?,
+    var photoLink: String?
 )

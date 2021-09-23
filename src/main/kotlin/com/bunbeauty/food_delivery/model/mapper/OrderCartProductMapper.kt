@@ -47,7 +47,15 @@ class OrderCartProductMapper {
     fun toClientModel(orderCartProduct: OrderCartProduct): OrderCartProductClient {
         return OrderCartProductClient(
             uuid = orderCartProduct.uuid,
-            menuProduct = menuProductMapper.toOrderMenuProductClient(orderCartProduct.orderMenuProduct),
+            name = orderCartProduct.orderMenuProduct.name,
+            cost = orderCartProduct.orderMenuProduct.cost,
+            discountCost = orderCartProduct.orderMenuProduct.discountCost,
+            weight = orderCartProduct.orderMenuProduct.weight,
+            description = orderCartProduct.orderMenuProduct.description,
+            comboDescription = orderCartProduct.orderMenuProduct.comboDescription,
+            barcode = orderCartProduct.orderMenuProduct.barcode,
+            photoLink = orderCartProduct.orderMenuProduct.photoLink,
+            orderUuid = orderCartProduct.userOrder.uuid,
             count = orderCartProduct.count,
         )
     }
