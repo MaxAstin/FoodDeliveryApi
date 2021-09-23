@@ -49,7 +49,6 @@ class OrderCartProductMapper {
             uuid = orderCartProduct.uuid,
             menuProduct = menuProductMapper.toOrderMenuProductClient(orderCartProduct.orderMenuProduct),
             count = orderCartProduct.count,
-            orderUserUuid = orderCartProduct.userOrder!!.uuid,
         )
     }
 
