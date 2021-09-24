@@ -1,5 +1,7 @@
 package com.bunbeauty.food_delivery.controller
 
+import com.bunbeauty.food_delivery.model.client.profile.PatchProfileClient
+import com.bunbeauty.food_delivery.model.client.user_order.PatchUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.PostUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.UserOrderClient
 import com.bunbeauty.food_delivery.model.toListWrapper
@@ -19,6 +21,19 @@ class UserOrderController {
     fun postUserOrder(@RequestBody order: PostUserOrderClient): ResponseEntity<Any> {
         return try {
             ResponseEntity.ok(userOrderService.insert(order))
+        } catch (ex: Exception) {
+            ResponseEntity.badRequest().body("$ex")
+        }
+    }
+
+
+    @PatchMapping
+    fun patchUserOrder(
+        @RequestParam uuid: String,
+        @RequestBody order: PatchUserOrderClient
+    ): ResponseEntity<Any> {
+        return try {
+            ResponseEntity.ok(userOrderService.update(uuid, order))
         } catch (ex: Exception) {
             ResponseEntity.badRequest().body("$ex")
         }

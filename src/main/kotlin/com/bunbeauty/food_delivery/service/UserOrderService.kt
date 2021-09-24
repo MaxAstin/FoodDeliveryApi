@@ -1,7 +1,10 @@
 package com.bunbeauty.food_delivery.service
 
+import com.bunbeauty.food_delivery.error.NotFoundWithUuid
+import com.bunbeauty.food_delivery.model.client.user_order.PatchUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.PostUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.UserOrderClient
+import com.bunbeauty.food_delivery.model.local.order.UserOrder
 import com.bunbeauty.food_delivery.model.mapper.OrderCartProductMapper
 import com.bunbeauty.food_delivery.model.mapper.UserOrderMapper
 import com.bunbeauty.food_delivery.repository.OrderProductRepository
@@ -43,6 +46,32 @@ class UserOrderService {
                 }).toList()
         }
         return userOrderMapper.toClientModel(userOrderClient)
+    }
+
+    fun update(userOrderUuid: String, order: PatchUserOrderClient): UserOrderClient {
+        if (userOrderUuid.isEmpty())
+            throw Exception("Uuid was empty")
+
+        val userOrderFromLocal =
+            userOrderRepository.getByUuid(userOrderUuid) ?: throw NotFoundWithUuid(UserOrder::class.simpleName!!)
+
+        val updatedUserOrder = UserOrder(
+            uuid = userOrderUuid,
+            time = userOrderFromLocal.time,
+            orderStatus = order.orderStatus ?: userOrderFromLocal.orderStatus,
+            isDelivery = userOrderFromLocal.isDelivery,
+            code = userOrderFromLocal.code,
+            address = userOrderFromLocal.address,
+            comment = userOrderFromLocal.comment,
+            deferredTime = userOrderFromLocal.deferredTime,
+            bonus = userOrderFromLocal.bonus,
+            profile = userOrderFromLocal.profile,
+            cafe = userOrderFromLocal.cafe,
+            orderCartProducts = userOrderFromLocal.orderCartProducts,
+        )
+
+        userOrderRepository.save(updatedUserOrder)
+        return userOrderMapper.toClientModel(updatedUserOrder)
     }
 
     fun getUserOrderListByProfileUuid(uuid: String): List<UserOrderClient> {

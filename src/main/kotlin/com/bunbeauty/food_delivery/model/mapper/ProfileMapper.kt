@@ -25,7 +25,7 @@ class ProfileMapper {
         )
     }
 
-    fun toClientModel(profile: Profile, streetMapper: StreetMapper): ProfileClient {
+    fun toClientModel(profile: Profile): ProfileClient {
         return ProfileClient(
             uuid = profile.uuid,
             phone = profile.phone,

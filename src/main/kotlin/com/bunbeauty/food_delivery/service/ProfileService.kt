@@ -20,9 +20,6 @@ class ProfileService {
     @Autowired
     lateinit var profileMapper: ProfileMapper
 
-    @Autowired
-    lateinit var streetMapper: StreetMapper
-
     fun insert(profile: PostProfileClient): ProfileClient {
         if (profile.uuid.isEmpty())
             profile.uuid = UUID.randomUUID().toString()
@@ -30,8 +27,7 @@ class ProfileService {
         return profileMapper.toClientModel(
             profileRepository.save(
                 profileMapper.toEntityModel(profile)
-            ),
-            streetMapper
+            )
         )
     }
 
@@ -51,17 +47,16 @@ class ProfileService {
         )
 
         profileRepository.save(updatedProfile)
-        return profileMapper.toClientModel(updatedProfile, streetMapper)
+        return profileMapper.toClientModel(updatedProfile)
     }
 
     fun getProfileByUuid(uuid: String): ProfileClient {
         return profileMapper.toClientModel(
-            profileRepository.getByUuid(uuid) ?: throw NotFoundWithUuid(Profile::class.simpleName!!),
-            streetMapper
+            profileRepository.getByUuid(uuid) ?: throw NotFoundWithUuid(Profile::class.simpleName!!)
         )
     }
 
     fun getAllProfiles(): List<ProfileClient> {
-        return profileRepository.getBy().map { profileMapper.toClientModel(it, streetMapper) }
+        return profileRepository.getBy().map { profileMapper.toClientModel(it) }
     }
 }
