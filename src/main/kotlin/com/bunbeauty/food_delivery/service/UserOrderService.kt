@@ -5,8 +5,8 @@ import com.bunbeauty.food_delivery.model.client.user_order.PatchUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.PostUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.UserOrderClient
 import com.bunbeauty.food_delivery.model.local.order.UserOrder
-import com.bunbeauty.food_delivery.model.mapper.OrderCartProductMapper
-import com.bunbeauty.food_delivery.model.mapper.UserOrderMapper
+import com.bunbeauty.food_delivery.service.mapper.OrderCartProductMapper
+import com.bunbeauty.food_delivery.service.mapper.UserOrderMapper
 import com.bunbeauty.food_delivery.repository.OrderProductRepository
 import com.bunbeauty.food_delivery.repository.UserOrderRepository
 import org.springframework.beans.factory.annotation.Autowired

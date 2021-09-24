@@ -3,7 +3,7 @@ package com.bunbeauty.food_delivery.service
 import com.bunbeauty.food_delivery.error.NotFoundWithUuid
 import com.bunbeauty.food_delivery.model.client.ProductCodeClient
 import com.bunbeauty.food_delivery.model.local.ProductCode
-import com.bunbeauty.food_delivery.model.mapper.ProductCodeMapper
+import com.bunbeauty.food_delivery.service.mapper.ProductCodeMapper
 import com.bunbeauty.food_delivery.repository.ProductCodeRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

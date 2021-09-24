@@ -6,9 +6,9 @@ import com.bunbeauty.food_delivery.model.client.order_cart_product.PostOrderCart
 data class PostUserOrderClient(
     var uuid: String,
 
-    val orderStatus: OrderStatus,
+    val orderStatus: OrderStatus?,
     val isDelivery: Boolean,
-    val code: String,
+    val code: String?,
     val comment: String?,
     val deferredTime: Long?,
     val bonus: Int?,

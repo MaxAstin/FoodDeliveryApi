@@ -1,7 +1,6 @@
-package com.bunbeauty.food_delivery.model.mapper
+package com.bunbeauty.food_delivery.service.mapper
 
 import com.bunbeauty.food_delivery.error.NotFoundWithUuid
-import com.bunbeauty.food_delivery.model.client.address.AddressClient
 import com.bunbeauty.food_delivery.model.client.street.PostStreetClient
 import com.bunbeauty.food_delivery.model.client.street.StreetClient
 import com.bunbeauty.food_delivery.model.local.Cafe

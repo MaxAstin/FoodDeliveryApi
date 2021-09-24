@@ -1,4 +1,4 @@
-package com.bunbeauty.food_delivery.model.mapper
+package com.bunbeauty.food_delivery.service.mapper
 
 import com.bunbeauty.food_delivery.model.client.ProductCodeClient
 import com.bunbeauty.food_delivery.model.local.ProductCode

@@ -2,7 +2,7 @@ package com.bunbeauty.food_delivery.service
 
 import com.bunbeauty.food_delivery.model.client.address.AddressClient
 import com.bunbeauty.food_delivery.model.client.address.PostAddressClient
-import com.bunbeauty.food_delivery.model.mapper.AddressMapper
+import com.bunbeauty.food_delivery.service.mapper.AddressMapper
 import com.bunbeauty.food_delivery.repository.AddressRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

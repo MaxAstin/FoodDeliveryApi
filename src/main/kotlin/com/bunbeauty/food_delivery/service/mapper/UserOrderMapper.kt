@@ -1,5 +1,6 @@
-package com.bunbeauty.food_delivery.model.mapper
+package com.bunbeauty.food_delivery.service.mapper
 
+import com.bunbeauty.food_delivery.enums.OrderStatus
 import com.bunbeauty.food_delivery.error.NotFoundWithUuid
 import com.bunbeauty.food_delivery.model.client.user_order.PostUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.UserOrderClient
@@ -8,6 +9,7 @@ import com.bunbeauty.food_delivery.model.local.Profile
 import com.bunbeauty.food_delivery.model.local.order.UserOrder
 import com.bunbeauty.food_delivery.repository.CafeRepository
 import com.bunbeauty.food_delivery.repository.ProfileRepository
+import com.bunbeauty.food_delivery.service.util.CodeGenerator
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
@@ -24,13 +26,19 @@ class UserOrderMapper {
     @Autowired
     lateinit var orderCartProductMapper: OrderCartProductMapper
 
+    @Autowired
+    lateinit var codeGenerator: CodeGenerator
+
     fun toEntityModel(order: PostUserOrderClient): UserOrder {
         return UserOrder(
             uuid = order.uuid,
             time = Date().time,
-            orderStatus = order.orderStatus,
+            orderStatus = OrderStatus.NOT_ACCEPTED,
             isDelivery = order.isDelivery,
-            code = order.code,
+            code = if (order.code.isNullOrEmpty())
+                codeGenerator.generateCode(Date().time, "АБВГДЕЗИКЛМНПРСТУФЦЧШЭЮЯ")
+            else
+                order.code,
             comment = order.comment,
             deferredTime = order.deferredTime,
             bonus = order.bonus,

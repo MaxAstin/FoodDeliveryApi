@@ -2,7 +2,7 @@ package com.bunbeauty.food_delivery.service
 
 import com.bunbeauty.food_delivery.model.client.cafe.CafeClient
 import com.bunbeauty.food_delivery.model.client.cafe.PostCafeClient
-import com.bunbeauty.food_delivery.model.mapper.CafeMapper
+import com.bunbeauty.food_delivery.service.mapper.CafeMapper
 import com.bunbeauty.food_delivery.repository.CafeRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

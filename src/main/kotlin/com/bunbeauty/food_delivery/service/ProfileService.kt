@@ -5,8 +5,7 @@ import com.bunbeauty.food_delivery.model.client.profile.PatchProfileClient
 import com.bunbeauty.food_delivery.model.client.profile.PostProfileClient
 import com.bunbeauty.food_delivery.model.client.profile.ProfileClient
 import com.bunbeauty.food_delivery.model.local.Profile
-import com.bunbeauty.food_delivery.model.mapper.ProfileMapper
-import com.bunbeauty.food_delivery.model.mapper.StreetMapper
+import com.bunbeauty.food_delivery.service.mapper.ProfileMapper
 import com.bunbeauty.food_delivery.repository.ProfileRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
