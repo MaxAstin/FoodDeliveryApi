@@ -29,6 +29,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-noarg")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")
     implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
+    implementation("org.springframework:spring-websocket:5.3.10")
+    implementation("org.springframework:spring-messaging:5.3.10")
 
     implementation("org.springframework.boot:spring-boot-starter-jdbc:2.5.4")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")

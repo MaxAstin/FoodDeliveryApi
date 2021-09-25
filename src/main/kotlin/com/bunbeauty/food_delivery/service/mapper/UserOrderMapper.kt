@@ -36,7 +36,7 @@ class UserOrderMapper {
             orderStatus = OrderStatus.NOT_ACCEPTED,
             isDelivery = order.isDelivery,
             code = if (order.code.isNullOrEmpty())
-                codeGenerator.generateCode(Date().time, "АБВГДЕЗИКЛМНПРСТУФЦЧШЭЮЯ")
+                codeGenerator.generateCode(Date().time, "АБВГДЕИКЛМНПРСТУФЦЧШЭЮЯ")
             else
                 order.code,
             comment = order.comment,
