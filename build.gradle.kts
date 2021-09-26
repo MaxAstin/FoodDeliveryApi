@@ -36,6 +36,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.4")
     runtimeOnly("org.postgresql:postgresql:42.2.23.jre7")
+
+    implementation("io.ktor:ktor-client-websockets:1.6.3")
+    implementation("io.ktor:ktor-client-apache:1.6.3")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 }
 
 tasks.withType<KotlinCompile> {

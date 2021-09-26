@@ -6,20 +6,16 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer
 
-
 @Configuration
 @EnableWebSocketMessageBroker
-
 class WebSocketConfig : WebSocketMessageBrokerConfigurer {
 
-    override fun configureMessageBroker(config: MessageBrokerRegistry) {
-        config.enableSimpleBroker( "/order")
-        config.setApplicationDestinationPrefixes("/app")
+    override fun configureMessageBroker(registry: MessageBrokerRegistry) {
+        registry.enableSimpleBroker( "/topic")
+        registry.setApplicationDestinationPrefixes("/ws")
     }
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
-        registry.addEndpoint("/ws")
-            .setAllowedOrigins("*")
-            .withSockJS();
+        registry.addEndpoint("/order").withSockJS()
     }
 }

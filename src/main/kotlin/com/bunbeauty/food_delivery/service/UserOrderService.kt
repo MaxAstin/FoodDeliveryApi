@@ -10,6 +10,7 @@ import com.bunbeauty.food_delivery.service.mapper.UserOrderMapper
 import com.bunbeauty.food_delivery.repository.OrderProductRepository
 import com.bunbeauty.food_delivery.repository.UserOrderRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -28,16 +29,19 @@ class UserOrderService {
     @Autowired
     lateinit var orderCartProductMapper: OrderCartProductMapper
 
+    @Autowired
+    lateinit var simpMessagingTemplate: SimpMessagingTemplate
+
     fun insert(order: PostUserOrderClient): UserOrderClient {
         if (order.uuid.isEmpty())
             order.uuid = UUID.randomUUID().toString()
 
         //first insert userOrder
-        val userOrderClient = userOrderRepository.save(userOrderMapper.toEntityModel(order))
+        val userOrder = userOrderRepository.save(userOrderMapper.toEntityModel(order))
 
         //second insert OrderProducts
         order.orderProducts?.let { orderProductList ->
-            userOrderClient.orderCartProducts =
+            userOrder.orderCartProducts =
                 orderProductRepository.saveAll(orderProductList.map {
                     orderCartProductMapper.toEntityModel(
                         it,
@@ -45,7 +49,8 @@ class UserOrderService {
                     )
                 }).toList()
         }
-        return userOrderMapper.toClientModel(userOrderClient)
+        simpMessagingTemplate.convertAndSend("/topic/orders", userOrderMapper.toClientModel(userOrder))
+        return userOrderMapper.toClientModel(userOrder)
     }
 
     fun update(userOrderUuid: String, order: PatchUserOrderClient): UserOrderClient {

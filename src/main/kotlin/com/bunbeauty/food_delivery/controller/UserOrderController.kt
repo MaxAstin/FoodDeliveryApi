@@ -1,9 +1,7 @@
 package com.bunbeauty.food_delivery.controller
 
-import com.bunbeauty.food_delivery.model.client.profile.PatchProfileClient
 import com.bunbeauty.food_delivery.model.client.user_order.PatchUserOrderClient
 import com.bunbeauty.food_delivery.model.client.user_order.PostUserOrderClient
-import com.bunbeauty.food_delivery.model.client.user_order.UserOrderClient
 import com.bunbeauty.food_delivery.model.toListWrapper
 import com.bunbeauty.food_delivery.service.UserOrderService
 import org.springframework.beans.factory.annotation.Autowired
@@ -25,7 +23,6 @@ class UserOrderController {
             ResponseEntity.badRequest().body("$ex")
         }
     }
-
 
     @PatchMapping
     fun patchUserOrder(
