@@ -42,13 +42,14 @@ class UserOrderService {
         //second insert OrderProducts
         order.orderProducts?.let { orderProductList ->
             userOrder.orderCartProducts =
-                orderProductRepository.saveAll(orderProductList.map {
-                    orderCartProductMapper.toEntityModel(
-                        it,
-                        order.uuid
-                    )
-                }).toList()
+                    orderProductRepository.saveAll(orderProductList.map {
+                        orderCartProductMapper.toEntityModel(
+                                it,
+                                order.uuid
+                        )
+                    }).toList()
         }
+
         simpMessagingTemplate.convertAndSend("/topic/orders", userOrderMapper.toClientModel(userOrder))
         return userOrderMapper.toClientModel(userOrder)
     }
@@ -58,21 +59,21 @@ class UserOrderService {
             throw Exception("Uuid was empty")
 
         val userOrderFromLocal =
-            userOrderRepository.getByUuid(userOrderUuid) ?: throw NotFoundWithUuid(UserOrder::class.simpleName!!)
+                userOrderRepository.getByUuid(userOrderUuid) ?: throw NotFoundWithUuid(UserOrder::class.simpleName!!)
 
         val updatedUserOrder = UserOrder(
-            uuid = userOrderUuid,
-            time = userOrderFromLocal.time,
-            orderStatus = order.orderStatus ?: userOrderFromLocal.orderStatus,
-            isDelivery = userOrderFromLocal.isDelivery,
-            code = userOrderFromLocal.code,
-            address = userOrderFromLocal.address,
-            comment = userOrderFromLocal.comment,
-            deferredTime = userOrderFromLocal.deferredTime,
-            bonus = userOrderFromLocal.bonus,
-            profile = userOrderFromLocal.profile,
-            cafe = userOrderFromLocal.cafe,
-            orderCartProducts = userOrderFromLocal.orderCartProducts,
+                uuid = userOrderUuid,
+                time = userOrderFromLocal.time,
+                orderStatus = order.orderStatus ?: userOrderFromLocal.orderStatus,
+                isDelivery = userOrderFromLocal.isDelivery,
+                code = userOrderFromLocal.code,
+                address = userOrderFromLocal.address,
+                comment = userOrderFromLocal.comment,
+                deferredTime = userOrderFromLocal.deferredTime,
+                bonus = userOrderFromLocal.bonus,
+                profile = userOrderFromLocal.profile,
+                cafe = userOrderFromLocal.cafe,
+                orderCartProducts = userOrderFromLocal.orderCartProducts,
         )
 
         userOrderRepository.save(updatedUserOrder)
@@ -80,7 +81,10 @@ class UserOrderService {
     }
 
     fun getUserOrderListByProfileUuid(uuid: String): List<UserOrderClient> {
-        return userOrderRepository.findByProfileUuid(uuid).map { userOrderMapper.toClientModel(it) }
+        val list = userOrderRepository.findByProfileUuid(uuid).map { userOrderMapper.toClientModel(it) }
+        simpMessagingTemplate.convertAndSend("/topic/orders", list.first())
+
+        return list
     }
 
     fun getUserOrderList(): List<UserOrderClient> {
