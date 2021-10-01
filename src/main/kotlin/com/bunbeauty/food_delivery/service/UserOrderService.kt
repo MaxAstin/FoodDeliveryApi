@@ -50,9 +50,9 @@ class UserOrderService {
                     }).toList()
         }
 
-        simpMessagingTemplate.convertAndSend("/topic/orders", userOrderMapper.toClientModel(userOrder))
+        simpMessagingTemplate.convertAndSend("/topic/orders", userOrder.code)
         Thread.sleep(1000)
-        simpMessagingTemplate.convertAndSend("/order", userOrderMapper.toClientModel(userOrder))
+        simpMessagingTemplate.convertAndSend("/order",  userOrder.code)
 
         return userOrderMapper.toClientModel(userOrder)
     }
