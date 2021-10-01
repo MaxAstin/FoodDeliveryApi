@@ -24,13 +24,6 @@ class DatabaseConfig {
 
     @Bean
     fun dataSource(): DataSource {
-        println(
-            "datasourceUrl $datasourceUrl\n" +
-                    "dbDriverClassName $dbDriverClassName\n" +
-                    "dbUsername $dbUsername\n" +
-                    "dbPassword $dbPassword"
-        )
-
         return DriverManagerDataSource().apply {
             setDriverClassName(dbDriverClassName)
             url = datasourceUrl

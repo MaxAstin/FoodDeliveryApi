@@ -29,18 +29,18 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-noarg")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")
     implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
+
     implementation("org.springframework:spring-websocket:5.3.10")
     implementation("org.springframework:spring-messaging:5.3.10")
+    implementation ("org.springframework.boot:spring-boot-starter-websocket")
+    implementation ("org.webjars:stomp-websocket:2.3.3")
+
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     implementation("org.springframework.boot:spring-boot-starter-jdbc:2.5.4")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.4")
     runtimeOnly("org.postgresql:postgresql:42.2.23.jre7")
-
-    implementation("io.ktor:ktor-client-websockets:1.6.3")
-    implementation("io.ktor:ktor-client-apache:1.6.3")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 }
 
 tasks.withType<KotlinCompile> {

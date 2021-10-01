@@ -1,13 +1,8 @@
 package com.bunbeauty.food_delivery
 
-import io.ktor.client.*
-import io.ktor.client.engine.apache.*
-import io.ktor.client.features.websocket.*
-import io.ktor.http.cio.websocket.*
-import kotlinx.coroutines.runBlocking
+
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import java.util.*
 
 @SpringBootApplication
 class FoodDeliveryApplicationKt {
