@@ -22,7 +22,14 @@ class WebSocketConfig : WebSocketConfigurer {
 //    }
 
     override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
-        registry.addHandler(OrderHandler(), "/chat").withSockJS()
+        println("registerWebSocketHandlers")
+        registry.addHandler(OrderHandler(), "/chat")
+            .setAllowedOrigins("*")
+            .setHandshakeHandler { request, response, wsHandler, attributes ->
+                println("request $request \nresponse $response \nwsHandler $wsHandler \nattributes $attributes")
+                true
+            }
+            .withSockJS()
     }
 }
 
