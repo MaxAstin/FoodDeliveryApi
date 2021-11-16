@@ -24,6 +24,7 @@ class WebSocketConfig : WebSocketConfigurer {
     override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
         println("registerWebSocketHandlers")
         registry.addHandler(OrderHandler(), "/chat")
+            .setAllowedOrigins("*")
             .setHandshakeHandler { request, response, wsHandler, attributes ->
                 println("request $request \nresponse $response \nwsHandler $wsHandler \nattributes $attributes")
                 true
@@ -32,6 +33,14 @@ class WebSocketConfig : WebSocketConfigurer {
 }
 
 class OrderHandler: TextWebSocketHandler() {
+
+    override fun afterConnectionEstablished(session: WebSocketSession) {
+        super.afterConnectionEstablished(session)
+        thread {
+            Thread.sleep(5000)
+            session.sendMessage(TextMessage("order " + System.nanoTime()))
+        }.start()
+    }
 
     override fun handleMessage(session: WebSocketSession, message: WebSocketMessage<*>) {
 
