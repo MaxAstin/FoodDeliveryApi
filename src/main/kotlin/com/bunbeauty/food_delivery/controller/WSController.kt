@@ -1,26 +1,21 @@
 package com.bunbeauty.food_delivery.controller
 
+import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.stereotype.Controller
-import kotlin.concurrent.thread
 
 @Controller
 class WSController {
 
-    init {
-        thread {
-            while (true) {
-                Thread.sleep(5000)
-                getOrder("order")
-            }
-        }.start()
+    @MessageMapping("/message")
+    @SendTo("/topic/messages")
+    fun getOrder(input: Input): Output {
+
+        Thread.sleep(3000)
+
+        return Output("ws get " + input.message)
     }
 
-    @SendTo("/topic/order")
-    fun getOrder(order: String): String {
-
-        println("ws $order")
-
-        return order + System.nanoTime()
-    }
+    data class Input(val message: String)
+    data class Output(val message: String)
 }
