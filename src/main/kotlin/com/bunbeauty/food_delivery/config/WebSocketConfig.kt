@@ -1,15 +1,15 @@
 package com.bunbeauty.food_delivery.config
 
 import org.springframework.context.annotation.Configuration
-import org.springframework.messaging.simp.config.MessageBrokerRegistry
 import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketMessage
 import org.springframework.web.socket.WebSocketSession
 import org.springframework.web.socket.config.annotation.*
 import org.springframework.web.socket.handler.TextWebSocketHandler
+import kotlin.concurrent.thread
 
 @Configuration
-@EnableWebSocketMessageBroker
+@EnableWebSocket
 class WebSocketConfig : WebSocketConfigurer {
 
 //    override fun registerStompEndpoints(registry: StompEndpointRegistry) {
@@ -25,12 +25,18 @@ class WebSocketConfig : WebSocketConfigurer {
         registry.addHandler(OrderHandler(), "/order").withSockJS()
     }
 
-    class OrderHandler(): TextWebSocketHandler() {
+    class OrderHandler: TextWebSocketHandler() {
 
         override fun handleMessage(session: WebSocketSession, message: WebSocketMessage<*>) {
 
-            Thread.sleep(5000)
-            session.sendMessage(TextMessage("order " + System.nanoTime()))
+            //Thread.sleep(5000)
+
+            thread {
+                Thread.sleep(5000)
+                session.sendMessage(TextMessage("order " + System.nanoTime()))
+            }.start()
+
+
         }
     }
 }
