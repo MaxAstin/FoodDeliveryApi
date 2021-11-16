@@ -22,21 +22,21 @@ class WebSocketConfig : WebSocketConfigurer {
 //    }
 
     override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
-        registry.addHandler(OrderHandler(), "/order").withSockJS()
+        registry.addHandler(OrderHandler(), "/chat").withSockJS()
     }
+}
 
-    class OrderHandler: TextWebSocketHandler() {
+class OrderHandler: TextWebSocketHandler() {
 
-        override fun handleMessage(session: WebSocketSession, message: WebSocketMessage<*>) {
+    override fun handleMessage(session: WebSocketSession, message: WebSocketMessage<*>) {
 
-            //Thread.sleep(5000)
+        //Thread.sleep(5000)
 
-            thread {
-                Thread.sleep(5000)
-                session.sendMessage(TextMessage("order " + System.nanoTime()))
-            }.start()
+        thread {
+            Thread.sleep(5000)
+            session.sendMessage(TextMessage("order " + System.nanoTime()))
+        }.start()
 
 
-        }
     }
 }
