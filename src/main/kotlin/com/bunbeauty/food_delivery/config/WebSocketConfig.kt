@@ -25,10 +25,10 @@ class WebSocketConfig : WebSocketConfigurer {
         println("registerWebSocketHandlers")
         registry.addHandler(OrderHandler(), "/chat")
             .setAllowedOrigins("*")
-            .setHandshakeHandler { request, response, wsHandler, attributes ->
-                println("request $request \nresponse $response \nwsHandler $wsHandler \nattributes $attributes")
-                true
-            }
+//            .setHandshakeHandler { request, response, wsHandler, attributes ->
+//                println("request $request \nresponse $response \nwsHandler $wsHandler \nattributes $attributes")
+//                true
+//            }
     }
 }
 
