@@ -28,7 +28,6 @@ class WebSocketConfig : WebSocketConfigurer {
                 println("request $request \nresponse $response \nwsHandler $wsHandler \nattributes $attributes")
                 true
             }
-            .withSockJS()
     }
 }
 
