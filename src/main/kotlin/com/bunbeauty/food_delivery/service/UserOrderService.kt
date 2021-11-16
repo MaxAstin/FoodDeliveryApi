@@ -29,9 +29,6 @@ class UserOrderService {
     @Autowired
     lateinit var orderCartProductMapper: OrderCartProductMapper
 
-    @Autowired
-    lateinit var simpMessagingTemplate: SimpMessagingTemplate
-
     fun insert(order: PostUserOrderClient): UserOrderClient {
         if (order.uuid.isEmpty())
             order.uuid = UUID.randomUUID().toString()
@@ -49,10 +46,6 @@ class UserOrderService {
                         )
                     }).toList()
         }
-
-        simpMessagingTemplate.convertAndSend("/topic/orders", userOrder.code)
-        Thread.sleep(1000)
-        simpMessagingTemplate.convertAndSend("/order",  userOrder.code)
 
         return userOrderMapper.toClientModel(userOrder)
     }
@@ -85,7 +78,6 @@ class UserOrderService {
 
     fun getUserOrderListByProfileUuid(uuid: String): List<UserOrderClient> {
         val list = userOrderRepository.findByProfileUuid(uuid).map { userOrderMapper.toClientModel(it) }
-        simpMessagingTemplate.convertAndSend("/topic/orders", list.first())
 
         return list
     }
